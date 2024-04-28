@@ -1,0 +1,9 @@
+$font-stack: Helvetica, sans-serif;
+$primary-color: #f00909;
+
+.home {
+    width: 100vw;
+    height: 100vh;
+    background-color: $primary-color;
+    font-family: $font-stack;
+}
