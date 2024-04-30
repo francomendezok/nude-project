@@ -1,16 +1,15 @@
-import { Link, Outlet, Route } from "react-router-dom"
-import Latest from "./Latest";
-import TopRated from "./TopRated";
+import { Link, Outlet} from "react-router-dom"
+
 
 export default function Shop () {
     return (
         <div>
           <ul>
             <li>
-              <Link to="/shop/latest">Latest</Link>
+              <Link to="latest">Latest</Link>
             </li>
             <li>
-              <Link to="/shop/topRated">Top rated</Link>
+              <Link to="topRated">Top rated</Link>
             </li>
           </ul>
           <Outlet />
@@ -19,13 +18,4 @@ export default function Shop () {
       );
 }
 
-export function ShopRoutes() {
-    return (
-      <Route path="/shop" element={<Shop />}>
-        {/* Ruta secundaria para Latest */}
-        <Route path="latest" element={<Latest />} />
-        {/* Ruta secundaria para ShopContent */}
-        <Route path="topRated" element={<TopRated />} />
-      </Route>
-    );
-  }
+// If we had data in the parent element, such as a state, that we wanted to pass to any components rendered by that outlet, we would have to use something called context.//
