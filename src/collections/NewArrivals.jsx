@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom"
 
-export default function TopRated () {
+export default function NewArrivals () {
     return (
         <>
-            <h1>Top rated Games</h1>
-            <Link to='/shop'>Go back</Link>
+            <h1>New Arrivals</h1>
             <Link to='/'>Home</Link>
         </>
     )

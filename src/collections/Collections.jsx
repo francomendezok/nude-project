@@ -1,15 +1,15 @@
 import { Link, Outlet} from "react-router-dom"
 
 
-export default function Shop () {
+export default function Collections () {
     return (
         <div>
           <ul>
             <li>
-              <Link to="latest">Latest</Link>
+              <Link to="best-sellers">Best Sellers</Link>
             </li>
             <li>
-              <Link to="topRated">Top rated</Link>
+              <Link to="new-arrivals">New Arrivals</Link>
             </li>
           </ul>
           <Outlet />
