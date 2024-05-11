@@ -9,6 +9,7 @@ import Cart from './cart/Cart';
 import About from './about/About';
 import NewArrivals from './collections/NewArrivals'
 import BestSellers from './collections/BestSellers'
+import AllProducts from './collections/AllProducts'
 import Stores from './stores/Stores'
 
 const router = createBrowserRouter([
@@ -19,21 +20,19 @@ const router = createBrowserRouter([
       { path: "/", element: <Home />},
       { path: "about-us", element: <About />},
       { path: "cart", element: <Cart />},
+      { path: "stores", element: <Stores />},
       { path: "collections",
         element: <Collections />,
         children: [
           { path: "new-arrivals", element: <NewArrivals /> },
           { path: "best-sellers", element: <BestSellers /> },
+          { path: "all-products", element: <AllProducts /> },
           // add tons of collections //
         ],
       },
     ]
   },
- 
-  {
-    path: "stores",
-    element: <Stores />,
-  },
+
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

@@ -7,7 +7,7 @@ export default function Root () {
         <div className="bor">
             <nav className="navbar">
                 <div className="links">
-                    <Link to='shop'>SHOP</Link>
+                    <Link to='collections/all-products'>SHOP</Link>
                     <Link to='collections'>COLLECTIONS</Link>
                     <Link to='stores'>STORES</Link>
                     <Link to='about-us'>ABOUT US</Link>
