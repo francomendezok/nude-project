@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
+import Root from './root';
 import Home from './home/Home';
 import Collections from './collections/Collections';
 import Cart from './cart/Cart';
@@ -13,11 +14,12 @@ import Stores from './stores/Stores'
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <Root />,
     children: [
+      { path: "/", element: <Home />},
+      { path: "about-us", element: <About />},
       { path: "cart", element: <Cart />},
-      {
-        path: "collections",
+      { path: "collections",
         element: <Collections />,
         children: [
           { path: "new-arrivals", element: <NewArrivals /> },
@@ -27,10 +29,7 @@ const router = createBrowserRouter([
       },
     ]
   },
-  {
-    path: "about-us",
-    element: <About />,
-  },
+ 
   {
     path: "stores",
     element: <Stores />,

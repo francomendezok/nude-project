@@ -1,8 +1,6 @@
-import { Link, Outlet } from "react-router-dom";
 import '../styles/index.css'
 import '../styles/reset.css'
 import nude from '../api/nude.json'
-import logo from '../images/nude.png'
 import banner1 from '../images/banner1.webp'
 
 const uniqueImageUrls = new Set();
@@ -18,21 +16,7 @@ const uniqueProducts = nude.filter(product => {
 
 export default function Home () {
     return (
-        <main className="flex flex-col w-full h-full items-center justify-center">
-            <header>
-                <nav className="flex justify-around w-full items-center">
-                    <aside className="flex justify-around w-full">
-                        <Link to="collections">Shop</Link>
-                        <Link to="collections">Collections</Link>
-                        <Link to="collections">Stores</Link>
-                        <Link to="about-us">About Us</Link>
-                        <Outlet />
-                    </aside>
-                    <div>
-                        <img src={logo} alt="" />
-                    </div>
-                </nav>
-            </header>
+        <div>
             <div className="slideshow">
                 <img src={banner1} alt="" />
             </div>
@@ -47,7 +31,6 @@ export default function Home () {
                     ))}
                 </div>
             </section>
-
-        </main>
+        </div>
     )
 }
