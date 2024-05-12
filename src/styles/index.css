@@ -42,3 +42,52 @@
     margin-bottom: 1rem;
     color: rgb(106, 109, 112);
 }
+
+.new-arrivals-home {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#images-container {
+    width: 100%;
+    height: 200vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+
+.product-home-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.product-home-box img{
+    width: 75%;
+}
+
+.new-in {
+    padding: 0.2rem;
+    position: relative;
+    background-color: rgb(234, 234, 234);
+    color: rgb(74, 74, 74);
+    top: 2rem;
+    right: 6rem;
+}
+
+.product-info {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+}
+
+.product-title {
+    font-weight: bold;
+}
+
+.product-title, .product-price {
+    margin-top: 0.5rem;
+}

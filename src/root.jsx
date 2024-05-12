@@ -23,7 +23,7 @@ export default function Root () {
                 </div>
             </nav>
             <Outlet />
-            <footer id="footer-root">
+            {/* <footer id="footer-root">
                 <div className="footer-divs">
                     <img src={logo} alt="" />
                     <p>help@nude-project.com</p>
@@ -61,7 +61,7 @@ export default function Root () {
                         <button type="submit">JOIN</button>
                     </div>
                 </div>
-            </footer>
+            </footer> */}
         </div>
 
     )
