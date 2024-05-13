@@ -22,6 +22,7 @@ export default function Root () {
                     <p>CART (0)</p>
                 </div>
             </nav>
+            <div className="free-shipping">FREE SHIPPING: NATIONAL OVER 100€ | INTERNATIONAL OVER 200€</div>
             <Outlet />
             <footer id="footer-root">
                 <div className="footer-divs">

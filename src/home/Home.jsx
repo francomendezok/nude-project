@@ -1,6 +1,7 @@
 import '../styles/index.css'
 import '../styles/reset.css'
 import nude from '../api/nude.json'
+import stores from '../api/stores.json'
 import banner1 from '../images/banner1.webp'
 import { useState, useEffect } from 'react';
 
@@ -26,9 +27,9 @@ console.log(nude)
 // }
 
 
-function ImagesBox () {
+function ImagesBox ({from,to}) {
     return (
-        nude.slice(0,16).map(product => {
+        nude.slice(from,to).map(product => {
             let variantsProduct = product.variants.map(v => v.option1 + " ") 
             return (
                 <div className='product-home-box' key={product.id}>
@@ -76,6 +77,57 @@ function ClothesSection() {
     );
 }
 
+function OurStores() {
+    const [position, setPosition] = useState(0)
+
+    useEffect(() => {
+        const interval = setTimeout(() => {
+            setPosition(prevPosition => (prevPosition + 1) % stores.length);
+        }, 5000);
+
+        return () => clearTimeout(interval);
+    }, [position]);
+
+    return (
+        <div>
+            <h2>Our Stores</h2>
+                <div className='store'>
+                    <img src={stores[position].img} alt={`${stores[position].city} store`} />
+                    <div className='flex'>
+                        <h3>{stores[position].city}</h3>
+                        <div className='grid'>
+                            <div>
+                                <p>{stores[position].street}</p>
+                                <p>{stores[position].zip}</p>
+                            </div>
+                            <div>
+                                <p>{stores[position].weekdays}</p>
+                                {position === 5 ? <p>{stores[position].saturday}</p> : null}
+                                <p>{stores[position].sunday}</p>
+                            </div>
+                            <div>
+                                <p>{stores[position]['hs-weekdays']}</p>
+                                {position === 5 ? <p>{stores[position]['hs-saturday']}</p> : null}
+                                <p>{stores[position]['hs-sunday']}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+            <div className='carrousel-position'>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    );
+}
+
 
 
 
@@ -87,10 +139,14 @@ export default function Home () {
             </div>
             <section className="new-arrivals-home">
                 <h2 className="text-2xl">New Arrivals</h2>
-                <div id='images-container'>
-                    <ImagesBox />
+                <div className='images-container'>
+                    <ImagesBox from={0} to={16}/>
                 </div>
                     <ClothesSection />
+                <div className='images-container'>
+                    <ImagesBox from={91} to={103}/>
+                </div>
+                <OurStores />
             </section>
         </div>
     )

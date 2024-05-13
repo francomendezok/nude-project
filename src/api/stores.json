@@ -1,0 +1,84 @@
+[
+    {
+    "city": "MILANO",
+    "street": "Corso di Porta Ticinese,",
+    "zip": "6420123 Milano",
+    "weekdays": "MON-SAT",
+    "sunday": "SUN",
+    "hs-weekdays": "10.30-19.30",
+    "hs-sunday": "15-19",
+    "img": "//nude-project.com/cdn/shop/files/deskt_copia2_a4839238-054f-4819-ab5c-64f99ce66f7a_1440x.jpg?v=1698309568" 
+    },
+    {
+    "city": "LISBOA",
+    "street": "R. Áurea, 153",
+    "zip": "1100-060 Lisboa, Portugal",
+    "weekdays": "MON-SAT",
+    "sunday": "SUN",
+    "hs-weekdays": "11.30-20.30",
+    "hs-sunday": "closed",
+    "img": "//nude-project.com/cdn/shop/files/1_deskt_1440x.jpg?v=1701683520" 
+    },
+    {
+    "city": "BARCELONA",
+    "street": "De la Canuda Street, 37",
+    "zip": "08002 Barcelona",
+    "weekdays": "MON-SAT",
+    "sunday": "SUN",
+    "hs-weekdays": "11-21",
+    "hs-sunday": "closed",
+    "img": "//nude-project.com/cdn/shop/files/iPhone_14_Pro_Max_63_097ae8f4-e4fb-4fbc-82d9-3ecd00fda72a_1440x.jpg?v=1690823627" 
+    },
+    {
+    "city": "BILBAO",
+    "street": "Portuko Markesaren Kalea,",
+    "zip": "1148008 Bilbo",
+    "weekdays": "MON-SAT",
+    "sunday": "SUN",
+    "hs-weekdays": "11-20.30",
+    "hs-sunday": "closed",
+    "img": "//nude-project.com/cdn/shop/files/deskt_3_7e9a5c61-b237-4c7e-81ec-470fed930de3_1440x.jpg?v=1704734301" 
+    },
+    {
+    "city": "VALENCIA",
+    "street": "Martínez Ferrando Street, 1",
+    "zip": "46004 Valencia",
+    "weekdays": "MON-SAT",
+    "sunday": "SUN",
+    "hs-weekdays": "11-21",
+    "hs-sunday": "closed",
+    "img": "//nude-project.com/cdn/shop/files/aa_d7f372ac-c68b-4d4f-bb3e-0373c66fddde_1440x.jpg?v=1690823917" 
+    },
+    {
+    "city": "MADRID",
+    "street": "Fuencarral Street, 47",
+    "zip": "28004 Madrid",
+    "weekdays": "MON-FRI",
+    "saturday": "SAT",
+    "sunday": "SUN",
+    "hs-weekdays": "11-21",
+    "hs-saturday": "11-21.30",
+    "hs-sunday": "12-20",
+    "img": "//nude-project.com/cdn/shop/files/iPhone_14_Pro_Max_96_aa2e755e-4c56-48e0-b59a-f7bbf013d12c_1440x.jpg?v=1681900154" 
+    },
+    {
+    "city": "LA ROCA VILLAGE",
+    "street": "La Roca Village, 08430 Santa",
+    "zip": "Agnès de Malanyanes, Barcelona",
+    "weekdays": "MON-SUN",
+    "sunday": "",
+    "hs-weekdays": "10-22",
+    "hs-sunday": "",
+    "img": "//nude-project.com/cdn/shop/files/1_798db347-8b19-4dad-b658-266e3cae1bbc_1440x.jpg?v=1690808202" 
+    },
+    {
+    "city": "NUDE PROJECT CAFÉ BY GOOD NEWS",
+    "street": "C. de Pujades, 81",
+    "zip": "08005 Barcelona",
+    "weekdays": "MON-FRI",
+    "sunday": "SAT-SUN",
+    "hs-weekdays": "8-20",
+    "hs-sunday": "closed",
+    "img": "//nude-project.com/cdn/shop/files/deskt_1_1440x.jpg?v=1698242504" 
+    }
+]
