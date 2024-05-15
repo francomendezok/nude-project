@@ -3,14 +3,15 @@ import logo from './images/nude.png'
 
 
 export default function Root () {
+
     return (
         <div className="bor">
             <nav className="navbar">
                 <div className="links">
-                    <Link to='collections/all-products'>SHOP</Link>
-                    <Link to='collections'>COLLECTIONS</Link>
-                    <Link to='stores'>STORES</Link>
-                    <Link to='about-us'>ABOUT US</Link>
+                    <Link className="hover:font-black" to='collections/all-products'>SHOP</Link>
+                    <Link className="hover:font-black" to='collections'>COLLECTIONS</Link>
+                    <Link className="hover:font-black" to='about-us'>ABOUT US</Link>
+                    <Link className="hover:font-black" to='stores'>STORES</Link>
                 </div>
                 
                 <Link to='/'><img src={logo} alt="" /></Link>

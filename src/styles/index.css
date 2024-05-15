@@ -5,7 +5,12 @@
 
 body, html {
     overflow-x: hidden;
-    font-family: Helvetica, Helvetica Neue, Arial, Lucida Grande, sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color:#452b1a;
+    font-weight: 400;
+    line-height: 1.65;
+    font-style: normal;
+    font-size: 13px !important;
 }
 
 .navbar {
@@ -14,6 +19,7 @@ body, html {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: sticky;
 }
 
 .free-shipping {
@@ -29,6 +35,7 @@ body, html {
     display: flex;
     justify-content: space-around;
 }
+
 
 #footer-root {
     margin-top: 12rem;
@@ -70,7 +77,6 @@ body, html {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr;
-    /* margin-bottom: 12rem; */
 }
 
 .product-home-box {
@@ -81,7 +87,7 @@ body, html {
     width: 100%;
 }
 .product-home-box img{
-    width: 75%;
+    width: 90%;
 }
 
 .new-in {
@@ -90,13 +96,14 @@ body, html {
     background-color: rgb(234, 234, 234);
     color: rgb(74, 74, 74);
     top: 2rem;
-    right: 6rem;
+    right: 10rem;
 }
 
 .product-info {
     display: flex;
     flex-direction: column;
-    width: 75%;
+    width: 90%;
+    margin-top: .1rem;
 }
 
 .product-title {
