@@ -62,7 +62,7 @@ function ImagesBox( {from, to} ) {
                             <p className='product-price'>€{product.variants[0].price}</p>
                             <p className='product-sizes'>{variantsProduct}</p>
                             
-                            <div key={index} style={{backgroundColor: 'blue'}} className='clothes-colors'>{product.options[1]["values"][0]} </div>
+                            <div key={index} style={{backgroundColor: 'blue'}} className='clothes-colors'> </div>
                                 
                           
                         </div>
@@ -122,22 +122,28 @@ function OurStores() {
 
     return (
         <div>
-            <h2>Our Stores</h2>
-                <div className='store'>
+            <div className='our-stores-container'>
+                <p className="our-stores-title">Our Stores</p>
+                <p className="our-stores-title">Our Stores</p>
+                <p className="our-stores-title">Our Stores</p>
+                <p className="our-stores-title">Our Stores</p>
+                <p className="our-stores-title">Our Stores</p>
+            </div>
+                <div id='store'>
                     <img src={stores[position].img} alt={`${stores[position].city} store`} />
-                    <div className='flex'>
-                        <h3>{stores[position].city}</h3>
-                        <div className='grid'>
-                            <div>
+                    <div className='city-info-container'>
+                        <a>{stores[position].city} ↗️</a>
+                        <div className='stores-info-box'>
+                            <div className='address-box'>
                                 <p>{stores[position].street}</p>
                                 <p>{stores[position].zip}</p>
                             </div>
-                            <div>
+                            <div className='days-box'>
                                 <p>{stores[position].weekdays}</p>
                                 {position === 5 ? <p>{stores[position].saturday}</p> : null}
                                 <p>{stores[position].sunday}</p>
                             </div>
-                            <div>
+                            <div className='hs-box'>
                                 <p>{stores[position]['hs-weekdays']}</p>
                                 {position === 5 ? <p>{stores[position]['hs-saturday']}</p> : null}
                                 <p>{stores[position]['hs-sunday']}</p>
@@ -147,14 +153,14 @@ function OurStores() {
                 </div>
             
             <div className='carrousel-position'>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
+                <div id={position === 0 ? 'radio-item-selected' : ''} className='position-div'></div>
+                <div id={position === 1 ? 'radio-item-selected' : ''} className='position-div'></div>
+                <div id={position === 2 ? 'radio-item-selected' : ''} className='position-div'></div>
+                <div id={position === 3 ? 'radio-item-selected' : ''} className='position-div'></div>
+                <div id={position === 4 ? 'radio-item-selected' : ''} className='position-div'></div>
+                <div id={position === 5 ? 'radio-item-selected' : ''} className='position-div'></div>
+                <div id={position === 6 ? 'radio-item-selected' : ''} className='position-div'></div>
+                <div id={position === 7 ? 'radio-item-selected' : ''} className='position-div'></div>
             </div>
         </div>
     );

@@ -138,3 +138,86 @@ body, html {
     color: white;
     font-weight: bold;
 }
+
+#store {
+    width: 100vw;
+}
+
+#store img {
+    width: 100%;
+}
+
+.our-stores-container {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    top: 2.5rem;
+}
+
+
+.our-stores-title {
+    width: 100%;
+    font-size: 60px;
+    line-height: 72px;
+    color: #bcd1e8;
+    font-family: ITC Garamond Std;
+    font-weight: 400;
+    padding: 0 32.5px;
+    letter-spacing: -.02em;
+    display: inline-block;
+    white-space: nowrap;
+    animation: marquee 2s linear infinite;
+}
+@keyframes marquee {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0%);
+    }
+}
+
+.city-info-container {
+    position: relative;
+    left: 6rem;
+    bottom: 20rem;
+    z-index: 1;
+    width: 30%;
+    height: 30%;
+    padding: 22px 29px 23px 24px;
+    background-color: #fff;
+}
+
+.city-info-container a {
+    width: 100%;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.stores-info-box {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    margin-top: 2rem;
+    font-size: 1.2rem;
+}
+
+.carrousel-position {
+    display: flex;
+    gap: .4rem;
+    position: relative;
+    bottom: 12rem;
+    justify-content: center;
+}
+
+.position-div {
+    background-color:#bcd1e8;
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    border: none;
+}
+
+#radio-item-selected {
+    background-color: #fff;
+    border: none;
+}
