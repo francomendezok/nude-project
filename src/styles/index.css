@@ -182,10 +182,8 @@ body, html {
     left: 6rem;
     bottom: 20rem;
     z-index: 1;
-    min-width: 35%;
-    min-height: 35%;
-    max-width: 35%;
-    max-height: 35%;
+    width: 500px;
+    height: 120px;
     padding: 22px 29px 23px 24px;
     background-color: #fff;
 }
