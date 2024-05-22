@@ -3,28 +3,13 @@ import '../styles/reset.css'
 import nude from '../api/nude.json'
 import stores from '../api/stores.json'
 import banner1 from '../images/banner1.webp'
+import banner2 from '../images/banner2.webp'
+import banner3 from '../images/banner3.webp'
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom'
 
 console.log(nude);
-// function handleMouseEnter () {
-//     let title = document.querySelector('.product-title')
-//     let price = document.querySelector('.product-price')
-//     let sizes = document.querySelector('.product-sizes')
-//     title.classList.add('hidden')
-//     price.classList.add('hidden')
-//     sizes.classList.add('flex')
-// }
-
-// function handleMouseLeave () {
-//     let title = document.querySelector('.product-title')
-//     let price = document.querySelector('.product-price')
-//     let sizes = document.querySelector('.product-sizes')
-//     title.classList.add('flex')
-//     price.classList.add('flex')
-//     sizes.classList.add('hidden')
-// }
 
 function handlePosition (position, setPosition, side) {
     if (side === "right") {
@@ -85,7 +70,6 @@ function Arrows ({position, setPosition, side}) {
 
 function ImagesBox( {from, to} ) {
     const [images, setImages] = useState([]);
-    let nudeColors = [...nude]
 
     useEffect(() => {
         const imageUrls = nude.slice(from, to).map(product => product.images[0].src)
@@ -104,9 +88,6 @@ function ImagesBox( {from, to} ) {
         <>
 
             {images.map((src, index) => {
-                // const colors = nudeColors.slice(from, to).map(product => product.options[1])
-                // let color = colors[index].values[0]
-                // console.log(color)
                 const product = nude[from + index];
                 let variantsProduct = product.variants.map(v => v.option1 + " ");
                 return (
@@ -116,11 +97,8 @@ function ImagesBox( {from, to} ) {
                         <div className='product-info'>
                             <p className='product-title'>{product.title}</p>
                             <p className='product-price'>€{product.variants[0].price}</p>
-                            <p className='product-sizes'>{variantsProduct}</p>
-                            
+                            <p className='product-sizes'>{variantsProduct}</p> 
                             <div key={index} style={{backgroundColor: 'blue'}} className='clothes-colors'> </div>
-                                
-                          
                         </div>
                     </div>
                 );
@@ -231,16 +209,31 @@ function OurStores() {
     );
 }
 
+const Slideshow = () => {
+    const [index, setIndex] = useState(0);
+    const images = [banner1, banner2, banner3]; 
+
+    useEffect(() => {
+        const timerID = setInterval(() => {
+            setIndex((prevIndex) => (prevIndex + 1) % images.length);
+        }, 5000); 
+
+        return () => clearInterval(timerID); 
+    }, [images.length]);
+
+    return (
+        <div className="slideshow">
+            <img src={images[index]} alt="" />
+        </div>
+    );
+};
 
 
 
 export default function Home() {
-
     return (
         <div>
-            <div className="slideshow">
-                <img src={banner1} alt="" />
-            </div>
+           <Slideshow />
             <section className="new-arrivals-home">
                 <div className='flex items-center w-full pl-6 pr-6 pt-4 -mb-10 justify-between'>
                     <h2 className="text-xl font-bold">NEW ARRIVALS</h2>
