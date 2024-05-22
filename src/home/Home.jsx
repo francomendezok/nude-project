@@ -1,17 +1,25 @@
-import '../styles/index.css'
-import '../styles/reset.css'
-import nude from '../api/nude.json'
-import stores from '../api/stores.json'
-import banner1 from '../images/banner1.webp'
-import banner2 from '../images/banner2.webp'
-import banner3 from '../images/banner3.webp'
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom'
+import banner1 from '../images/banner1.webp';
+import banner2 from '../images/banner2.webp';
+import banner3 from '../images/banner3.webp';
+import nude from '../api/nude.json';
+import stores from '../api/stores.json';
+import logo from '../images/nude.png'
+import '../styles/index.css';
+import '../styles/reset.css';
 
-console.log(nude);
+const loadImage = (url) => {
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.src = url;
+        img.onload = () => resolve(url);
+        img.onerror = (error) => reject(error);
+    });
+};
 
-function handlePosition (position, setPosition, side) {
+function handlePosition(position, setPosition, side) {
     if (side === "right") {
         if (position < 7) {
             setPosition(position + 1)
@@ -19,22 +27,19 @@ function handlePosition (position, setPosition, side) {
         else {
             setPosition(0)
         }
-    }
-    else {
+    } else {
         if (position > 0) {
             setPosition(position - 1)
-        }
-        else {
+        } else {
             setPosition(7)
         }
     }
-
 }
 
-function Arrows ({position, setPosition, side}) {
+function Arrows({ position, setPosition, side }) {
     return (
         side === "right" 
-        ?
+        ? 
         <svg
             onClick={() => handlePosition(position, setPosition, "right")}
             className='right-arrow'
@@ -64,29 +69,24 @@ function Arrows ({position, setPosition, side}) {
         </svg>
         : 
         <svg onClick={() => handlePosition(position, setPosition, "left")} className='left-arrow' fill="#ffffff" height="12px" width="12px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 330 330" xmlSpace="preserve"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"><path id="XMLID_92_" d="M111.213,165.004L250.607,25.607c5.858-5.858,5.858-15.355,0-21.213c-5.858-5.858-15.355-5.858-21.213,0.001 l-150,150.004C76.58,157.211,75,161.026,75,165.004c0,3.979,1.581,7.794,4.394,10.607l150,149.996 C232.322,328.536,236.161,330,240,330s7.678-1.464,10.607-4.394c5.858-5.858,5.858-15.355,0-21.213L111.213,165.004z"></path></g></svg>
-
-    )
+    );
 }
 
-function ImagesBox( {from, to} ) {
+function ImagesBox({ from, to }) {
     const [images, setImages] = useState([]);
 
     useEffect(() => {
-        const imageUrls = nude.slice(from, to).map(product => product.images[0].src)
+        const imageUrls = nude.slice(from, to).map(product => product.images[0].src);
         const loadImages = imageUrls.map(url =>
-            fetch(url)
-                .then(response => response.blob())
-                .then(blob => URL.createObjectURL(blob))
+            loadImage(url)
         );
         Promise.all(loadImages)
             .then(setImages)
             .catch(error => console.error("Error loading images:", error));
     }, [from, to]);
 
-
     return (
         <>
-
             {images.map((src, index) => {
                 const product = nude[from + index];
                 let variantsProduct = product.variants.map(v => v.option1 + " ");
@@ -106,34 +106,32 @@ function ImagesBox( {from, to} ) {
         </>
     );
 }
-Arrows.propTypes = {
-    side: PropTypes.string,
-    position: PropTypes.number,
-    setPosition: PropTypes.func
-}
 
 ImagesBox.propTypes = {
     from: PropTypes.number,
     to: PropTypes.number
-}
-
+};
+Arrows.propTypes = {
+    position: PropTypes.number,
+    setPosition: PropTypes.function,
+    side: PropTypes.string
+};
 
 function ClothesSection() {
     const [images, setImages] = useState([]);
-    const clothes = ['HOODIES', "TEES", "ALL PRODUCTS"]
+    const clothes = ['HOODIES', "TEES", "ALL PRODUCTS"];
 
     useEffect(() => {
-        Promise.all([
-            fetch("https://nude-project.com/cdn/shop/files/aSin_titulo-2.jpg?v=1715263768"),
-            fetch("https://nude-project.com/cdn/shop/files/Sin_titulo-1_copia_40.jpg?v=1712850111"),
-            fetch("https://nude-project.com/cdn/shop/files/Sin_titulo-8_02826557-3039-4635-8515-9a0ca9b9ff4e.jpg?v=1715263757")
-        ])
-        .then(responses => Promise.all(responses.map(response => response.blob())))
-        .then(blobs => {
-            const imageUrls = blobs.map(blob => URL.createObjectURL(blob));
-            setImages(imageUrls);
-        })
-        .catch(error => console.error("Error fetching images:", error));
+        const urls = [
+            "https://nude-project.com/cdn/shop/files/aSin_titulo-2.jpg?v=1715263768",
+            "https://nude-project.com/cdn/shop/files/Sin_titulo-1_copia_40.jpg?v=1712850111",
+            "https://nude-project.com/cdn/shop/files/Sin_titulo-8_02826557-3039-4635-8515-9a0ca9b9ff4e.jpg?v=1715263757"
+        ];
+
+        const loadImages = urls.map(url => loadImage(url));
+        Promise.all(loadImages)
+            .then(setImages)
+            .catch(error => console.error("Error fetching images:", error));
     }, []);
 
     return (
@@ -149,7 +147,7 @@ function ClothesSection() {
 }
 
 function OurStores() {
-    const [position, setPosition] = useState(0)
+    const [position, setPosition] = useState(0);
 
     useEffect(() => {
         const interval = setTimeout(() => {
@@ -168,33 +166,32 @@ function OurStores() {
                 <p className="our-stores-title">Our Stores</p>
                 <p className="our-stores-title">Our Stores</p>
             </div>
-                <div id='store'>
-                    <img src={stores[position].img} alt={`${stores[position].city} store`} />
-                    <div className='city-info-container'>
-                        <a>{stores[position].city} ↗️</a>
-                        <div className='stores-info-box'>
-                            <div className='address-box'>
-                                <p>{stores[position].street}</p>
-                                <p>{stores[position].zip}</p>
-                            </div>
-                            <div className='days-box'>
-                                <p>{stores[position].weekdays}</p>
-                                {position === 5 ? <p>{stores[position].saturday}</p> : null}
-                                <p>{stores[position].sunday}</p>
-                            </div>
-                            <div className='hs-box'>
-                                <p>{stores[position]['hs-weekdays']}</p>
-                                {position === 5 ? <p>{stores[position]['hs-saturday']}</p> : null}
-                                <p>{stores[position]['hs-sunday']}</p>
-                            </div>
+            <div id='store'>
+                <img src={stores[position].img} alt={`${stores[position].city} store`} />
+                <div className='city-info-container'>
+                    <a>{stores[position].city} ↗️</a>
+                    <div className='stores-info-box'>
+                        <div className='address-box'>
+                            <p>{stores[position].street}</p>
+                            <p>{stores[position].zip}</p>
+                        </div>
+                        <div className='days-box'>
+                            <p>{stores[position].weekdays}</p>
+                            {position === 5 ? <p>{stores[position].saturday}</p> : null}
+                            <p>{stores[position].sunday}</p>
+                        </div>
+                        <div className='hs-box'>
+                            <p>{stores[position]['hs-weekdays']}</p>
+                            {position === 5 ? <p>{stores[position]['hs-saturday']}</p> : null}
+                            <p>{stores[position]['hs-sunday']}</p>
                         </div>
                     </div>
-                    <div className='arrow'>
-                        <Arrows position={position} setPosition={setPosition} side='left'/>
-                        <Arrows position={position} setPosition={setPosition} side='right'/>
-                    </div>
                 </div>
-            
+                <div className='arrow'>
+                    <Arrows position={position} setPosition={setPosition} side='left' />
+                    <Arrows position={position} setPosition={setPosition} side='right' />
+                </div>
+            </div>
             <div className='carrousel-position'>
                 <div id={position === 0 ? 'radio-item-selected' : ''} className='position-div'></div>
                 <div id={position === 1 ? 'radio-item-selected' : ''} className='position-div'></div>
@@ -209,16 +206,39 @@ function OurStores() {
     );
 }
 
-const Slideshow = () => {
+function PhotosOfCollections () {
+    return (
+        <div id='photos'>
+           <div className="inner-photo"><img src="" alt="" /></div>
+           <div className="inner-photo"><img src="" alt="" /></div>
+           <div className="inner-photo"><img src="" alt="" /></div>
+           <div className="inner-photo"><img src="" alt="" /></div>
+           <div className="inner-photo">g<img src="" alt="" /></div>
+           <div className="inner-photo"><img src="" alt="" /></div>
+           <div className="inner-photo"><img src="" alt="" /></div>
+           <div className="inner-photo"><img src="" alt="" /></div>
+           <div className="inner-photo"><img src="" alt="" /></div>
+           <div className="inner-photo"><img src="" alt="" /></div>
+           <div className="inner-photo"><img src="" alt="" /></div>
+           <div className="inner-photo"><img src="" alt="" /></div>
+           <div className="inner-photo"><img src="" alt="" /></div>
+           <div className="inner-photo"><img src="" alt="" /></div>
+           <div className="inner-photo"><img src="" alt="" /></div>
+           <div className="inner-photo"><img src="" alt="" /></div>
+        </div>
+    )
+}
+
+function Slideshow() {
     const [index, setIndex] = useState(0);
-    const images = [banner1, banner2, banner3]; 
+    const images = [banner1, banner2, banner3];
 
     useEffect(() => {
         const timerID = setInterval(() => {
             setIndex((prevIndex) => (prevIndex + 1) % images.length);
-        }, 5000); 
+        }, 5000);
 
-        return () => clearInterval(timerID); 
+        return () => clearInterval(timerID);
     }, [images.length]);
 
     return (
@@ -226,14 +246,36 @@ const Slideshow = () => {
             <img src={images[index]} alt="" />
         </div>
     );
-};
-
-
+}
 
 export default function Home() {
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        const imagesToLoad = [
+            banner1,
+            banner2,
+            banner3,
+            "https://nude-project.com/cdn/shop/files/aSin_titulo-2.jpg?v=1715263768",
+            "https://nude-project.com/cdn/shop/files/Sin_titulo-1_copia_40.jpg?v=1712850111",
+            "https://nude-project.com/cdn/shop/files/Sin_titulo-8_02826557-3039-4635-8515-9a0ca9b9ff4e.jpg?v=1715263757",
+            ...nude.slice(0, 16).map(product => product.images[0].src),
+            ...nude.slice(91, 103).map(product => product.images[0].src),
+            ...stores.map(store => store.img)
+        ];
+
+        Promise.all(imagesToLoad.map(url => loadImage(url)))
+            .then(() => setIsLoading(false))
+            .catch(error => console.error("Error loading images:", error));
+    }, []);
+
+    if (isLoading) {
+        return <img className='loading' src={logo} alt="" />
+    }
+
     return (
         <div>
-           <Slideshow />
+            <Slideshow />
             <section className="new-arrivals-home">
                 <div className='flex items-center w-full pl-6 pr-6 pt-4 -mb-10 justify-between'>
                     <h2 className="text-xl font-bold">NEW ARRIVALS</h2>
@@ -242,11 +284,12 @@ export default function Home() {
                 <div className='images-container'>
                     <ImagesBox from={0} to={16} />
                 </div>
-                    <ClothesSection />
+                <ClothesSection />
                 <div className='images-container'>
                     <ImagesBox from={91} to={103} />
                 </div>
-                    <OurStores />
+                <OurStores />
+                <PhotosOfCollections />
             </section>
         </div>
     );

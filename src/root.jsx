@@ -5,7 +5,7 @@ import logo from './images/nude.png'
 export default function Root () {
 
     return (
-        <div className="">
+        <div id="root">
             <header>
                 <nav className="navbar">
                     <div className="links">

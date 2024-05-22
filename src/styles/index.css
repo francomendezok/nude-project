@@ -18,7 +18,15 @@ header {
     position: fixed;
     width: 100%;
     background-color: #fff;
-    z-index: 1;
+    z-index: 9999;
+}
+
+#photos {
+    border: 3px solid red;
+}
+
+.inner-photo {
+    width: calc(18% - 10px + 20px);
 }
 
 .navbar {
@@ -46,10 +54,12 @@ header {
 
 #footer-root {
     width: 100%;
+    height: 100%;
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr 2fr;
     border-top: 2px solid grey;
     padding: 60px 80px 100px 80px ;
+    margin-top: 40rem;
 }
 
 .icons {
@@ -207,6 +217,28 @@ header {
     font-weight: bold;
 }
 
+@keyframes spin3d {
+    from {
+        transform: rotateY(0deg) translateY(-50%);
+    }
+    to {
+        transform: rotateY(360deg) translateY(50%);
+    }
+}
+
+.loading {
+    position: absolute;
+    z-index: 1;
+    top: 20%; 
+    left: 20rem;
+    right: 20rem;
+    margin: auto;
+    animation: spin3d 2s linear infinite;
+    transform-style: preserve-3d;
+}
+
+
+
 #store {
     width: 100vw;
 }
@@ -220,6 +252,12 @@ header {
     justify-content: space-between;
     position: relative;
     top: 2.5rem;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 
