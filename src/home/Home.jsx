@@ -7,8 +7,31 @@ import banner3 from '../images/banner3.webp';
 import nude from '../api/nude.json';
 import stores from '../api/stores.json';
 import logo from '../images/nude.png'
+import photo1 from '../images/1.webp';
+import photo2 from '../images/2.webp';
+import photo3 from '../images/3.webp';
+import photo4 from '../images/4.webp';
+import photo5 from '../images/5.webp';
+import photo6 from '../images/6.jpg';
+import photo7 from '../images/7.webp';
+import photo8 from '../images/8.webp';
+import photo9 from '../images/9.webp';
+import photo10 from '../images/10.webp';
+import photo11 from '../images/11.webp';
+import photo12 from '../images/12.webp';
+import photo13 from '../images/13.webp';
+import photo14 from '../images/14.webp';
+import photo15 from '../images/15.jpg';
+import photo16 from '../images/16.webp';
 import '../styles/index.css';
 import '../styles/reset.css';
+
+const quotes = [
+    "SOONER OR LATER YOU WILL BE HEARING <br>ABOUT NUDE PROJECT",
+    "THE FASTEST GROWING STREETWEAR BRAND <br>IN SPAIN",
+    "THE BRAND THAT SELLS A HOODIE EVERY 20 <br>SECONDS"
+]
+
 
 const loadImage = (url) => {
     return new Promise((resolve, reject) => {
@@ -117,6 +140,29 @@ Arrows.propTypes = {
     side: PropTypes.string
 };
 
+function Quotes () {
+    const [index, setIndex] = useState(0);
+    const [fade, setFade] = useState(true);
+
+    useEffect(() => {
+        const intervalID = setInterval(() => {
+            setFade(false); // Starts fade
+            setTimeout(() => {
+                setIndex((prevIndex) => (prevIndex + 1) % quotes.length);
+                setFade(true); // Fade In
+            }, 800); 
+        }, 5000);
+
+        return () => clearInterval(intervalID);
+    }, []);
+
+    return (
+        <div className="quote-container" style={{ opacity: fade ? 1 : 0 }}>
+            <p className="quotes" dangerouslySetInnerHTML={{ __html: quotes[index] }}></p>
+        </div>
+    );
+}
+
 function ClothesSection() {
     const [images, setImages] = useState([]);
     const clothes = ['HOODIES', "TEES", "ALL PRODUCTS"];
@@ -209,24 +255,72 @@ function OurStores() {
 function PhotosOfCollections () {
     return (
         <div id='photos'>
-           <div className="inner-photo"><img src="" alt="" /></div>
-           <div className="inner-photo"><img src="" alt="" /></div>
-           <div className="inner-photo"><img src="" alt="" /></div>
-           <div className="inner-photo"><img src="" alt="" /></div>
-           <div className="inner-photo">g<img src="" alt="" /></div>
-           <div className="inner-photo"><img src="" alt="" /></div>
-           <div className="inner-photo"><img src="" alt="" /></div>
-           <div className="inner-photo"><img src="" alt="" /></div>
-           <div className="inner-photo"><img src="" alt="" /></div>
-           <div className="inner-photo"><img src="" alt="" /></div>
-           <div className="inner-photo"><img src="" alt="" /></div>
-           <div className="inner-photo"><img src="" alt="" /></div>
-           <div className="inner-photo"><img src="" alt="" /></div>
-           <div className="inner-photo"><img src="" alt="" /></div>
-           <div className="inner-photo"><img src="" alt="" /></div>
-           <div className="inner-photo"><img src="" alt="" /></div>
+          <div className="inner-photo">
+            <img src={photo1} alt="Photo 1" />
+            <span className='hidden'>SHOP</span>
+          </div>
+          <div className="inner-photo">
+            <img src={photo2} alt="Photo 2" />
+            <span></span>
+          </div>
+          <div className="inner-photo">
+            <img src={photo3} alt="Photo 3" />
+            <span></span>
+          </div>
+          <div className="inner-photo">
+            <img src={photo4} alt="Photo 4" />
+            <span></span>
+          </div>
+          <div className="inner-photo">
+            <img src={photo5} alt="Photo 5" />
+            <span></span>
+          </div>
+          <div className="hidden inner-photo">
+            <img src={photo6} alt="Photo 6" />
+            <span></span>
+          </div>
+          <div className="hidden inner-photo">
+            <img src={photo7} alt="Photo 7" />
+            <span></span>
+          </div>
+          <div className="hidden inner-photo">
+            <img src={photo8} alt="Photo 8" />
+            <span></span>
+          </div>
+          <div className="hidden inner-photo">
+            <img src={photo9} alt="Photo 9" />
+            <span></span>
+          </div>
+          <div className="hidden inner-photo">
+            <img src={photo10} alt="Photo 10" />
+            <span></span>
+          </div>
+          <div className="hidden inner-photo">
+            <img src={photo11} alt="Photo 11" />
+            <span></span>
+          </div>
+          <div className="hidden inner-photo">
+            <img src={photo12} alt="Photo 12" />
+            <span></span>
+          </div>
+          <div className="hidden inner-photo">
+            <img src={photo13} alt="Photo 13" />
+            <span></span>
+          </div>
+          <div className="hidden inner-photo">
+            <img src={photo14} alt="Photo 14" />
+            <span></span>
+          </div>
+          <div className="hidden inner-photo">
+            <img src={photo15} alt="Photo 15" />
+            <span></span>
+          </div>
+          <div className="hidden inner-photo">
+            <img src={photo16} alt="Photo 16" />
+            <span></span>
+          </div>
         </div>
-    )
+      );
 }
 
 function Slideshow() {
@@ -290,6 +384,8 @@ export default function Home() {
                 </div>
                 <OurStores />
                 <PhotosOfCollections />
+                <Quotes />
+               
             </section>
         </div>
     );

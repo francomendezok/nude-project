@@ -22,11 +22,62 @@ header {
 }
 
 #photos {
-    border: 3px solid red;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 377.18px;
+    cursor: auto;
+    overflow-x: auto;
+    margin-top: -6rem;
 }
 
 .inner-photo {
     width: calc(18% - 10px + 20px);
+    position: relative;
+    z-index: 1;
+}
+
+.inner-span {
+    z-index: 2;
+    position: relative;
+    bottom: 16rem;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-transform: uppercase;
+    border: 1px solid;
+    padding: 2px 8px;
+    font-size: 12px;
+    font-weight: 700;
+    display: block;
+    width: 30%;
+    text-align: center;
+}
+
+.inner-photo:hover {
+    opacity: 0.6;
+}
+
+.quote-container {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    height: 60px;
+    width: 80%;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1s ease-in-out
+}
+
+.quotes {
+    font-size: 25px;
+    line-height: 30px;
+    width: 100%;
+    font-weight: 700;
+    cursor: crosshair;
+}
+
+.quotes::before, .quotes::after {
+    content: '"';
 }
 
 .navbar {
@@ -163,6 +214,7 @@ header {
 .new-in {
     padding: 0.2rem;
     position: relative;
+    top: 1rem;
     background-color: rgb(234, 234, 234);
     color: rgb(74, 74, 74);
     top: 2rem;
