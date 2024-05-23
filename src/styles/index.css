@@ -69,7 +69,7 @@ header {
 }
 
 .quotes {
-    font-size: 25px;
+    font-size: 32px;
     line-height: 30px;
     width: 100%;
     font-weight: 700;
@@ -78,6 +78,38 @@ header {
 
 .quotes::before, .quotes::after {
     content: '"';
+}
+
+.logo-container {
+    width: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#la-vanguardia {
+    max-width: 220px;
+    width: 100%;
+}
+#gq {
+    max-width: 60px;
+    width: 100%;
+}
+#el-mundo {
+    max-width: 180px;
+    width: 100%;
+}
+#vogue {
+    max-width: 100px;
+    width: 100%;
+}
+#modaes-es {
+    max-width: 160px;
+    width: 100%;
+}
+#bazaar {
+    max-width: 120px;
+    width: 100%;
 }
 
 .navbar {
