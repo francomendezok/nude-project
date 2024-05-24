@@ -291,6 +291,12 @@ header {
     top: 25rem;
 }
 
+.clothes-colors {
+    border-radius: 100%;
+    width: 12px;
+    height: 12px;
+}
+
 .clothes-categories-images {
     position: relative;
     top: 20rem;

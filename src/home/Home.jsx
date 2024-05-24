@@ -366,6 +366,7 @@ function Slideshow() {
         </div>
     );
 }
+console.log(nude)
 
 export default function Home() {
     const [isLoading, setIsLoading] = useState(true);
@@ -401,7 +402,183 @@ export default function Home() {
                     <Link className="underline text-xl text-slate-950" to="">VIEW ALL </Link>
                 </div>
                 <div className='images-container'>
-                    <ImagesBox from={0} to={16} />
+                    <div className='product-home-box'>
+                        <p className='new-in'>NEW IN</p>
+                        <img className='product-home-img cursor-pointer' src={nude[0].images[0].src} alt="" />
+                        <img className='product-home-img hidden cursor-pointer' src={nude[0].images[2].src} alt="" />
+                        <div className='product-info'>
+                            <p className='product-title'>{nude[0].title}</p>
+                            <p className='product-price'>€ {nude[0].variants[0].price}</p>
+                            <p className='product-sizes'>{nude[0].options[0].values}</p> 
+                            <div style={{backgroundColor: nude[0].options[1].values[0]}} className='clothes-colors'> </div>
+                        </div>
+                    </div>
+                    <div className='product-home-box'>
+                        <p className='new-in'>NEW IN</p>
+                        <img className='product-home-img cursor-pointer' src={nude[1].images[0].src} alt="" />
+                        <img className='product-home-img hidden cursor-pointer' src={nude[1].images[2].src} alt="" />
+                        <div className='product-info'>
+                            <p className='product-title'>{nude[1].title}</p>
+                            <p className='product-price'>€ {nude[1].variants[0].price}</p>
+                            <p className='product-sizes'>{nude[1].options[0].values}</p> 
+                            <div style={{backgroundColor: nude[1].options[1].values[0]}} className='clothes-colors'> </div>
+                        </div>
+                    </div>
+                    <div className='product-home-box'>
+                        <p className='new-in'>NEW IN</p>
+                        <img className='product-home-img cursor-pointer' src={nude[2].images[0].src} alt="" />
+                        <img className='product-home-img hidden cursor-pointer' src={nude[0].images[2].src} alt="" />
+                        <div className='product-info'>
+                            <p className='product-title'>{nude[2].title}</p>
+                            <p className='product-price'>€ {nude[2].variants[0].price}</p>
+                            <p className='product-sizes'>{nude[2].options[0].values}</p> 
+                            <div style={{backgroundColor: nude[2].options[1].values[0]}} className='clothes-colors'> </div>
+                        </div>
+                    </div>
+                    <div className='product-home-box'>
+                        <p className='new-in'>NEW IN</p>
+                        <img className='product-home-img cursor-pointer' src={nude[3].images[0].src} alt="" />
+                        <img className='product-home-img hidden cursor-pointer' src={nude[0].images[2].src} alt="" />
+                        <div className='product-info'>
+                            <p className='product-title'>{nude[3].title}</p>
+                            <p className='product-price'>€ {nude[3].variants[0].price}</p>
+                            <p className='product-sizes'>{nude[3].options[0].values}</p> 
+                            <div style={{backgroundColor: 'lightblue'}} className='clothes-colors'> </div>
+                        </div>
+                    </div>
+                    <div className='product-home-box'>
+                        <p className='new-in'>NEW IN</p>
+                        <img className='product-home-img cursor-pointer' src={nude[4].images[0].src} alt="" />
+                        <img className='product-home-img hidden cursor-pointer' src={nude[4].images[2].src} alt="" />
+                        <div className='product-info'>
+                            <p className='product-title'>{nude[4].title}</p>
+                            <p className='product-price'>€ {nude[4].variants[0].price}</p>
+                            <p className='product-sizes'>{nude[4].options[0].values}</p> 
+                            <div style={{backgroundColor: nude[4].options[1].values[0]}} className='clothes-colors'> </div>
+                        </div>
+                    </div>
+                    <div className='product-home-box'>
+                        <p className='new-in'>NEW IN</p>
+                        <img className='product-home-img cursor-pointer' src={nude[5].images[0].src} alt="" />
+                        <img className='product-home-img hidden cursor-pointer' src={nude[5].images[2].src} alt="" />
+                        <div className='product-info'>
+                            <p className='product-title'>{nude[5].title}</p>
+                            <p className='product-price'>€ {nude[5].variants[0].price}</p>
+                            <p className='product-sizes'>{nude[5].options[0].values}</p> 
+                            <div style={{backgroundColor: nude[5].options[1].values[0]}} className='clothes-colors'> </div>
+                        </div>
+                    </div>
+    
+                    <div className='product-home-box'>
+                        <p className='new-in'>NEW IN</p>
+                        <img className='product-home-img cursor-pointer' src={nude[0].images[0].src} alt="" />
+                        <img className='product-home-img hidden cursor-pointer' src={nude[0].images[2].src} alt="" />
+                        <div className='product-info'>
+                            <p className='product-title'>{nude[0].title}</p>
+                            <p className='product-price'>€ {nude[0].variants[0].price}</p>
+                            <p className='product-sizes'>{nude[0].options[0].values}</p> 
+                            <div style={{backgroundColor: nude[0].options[1].values[0]}} className='clothes-colors'> </div>
+                        </div>
+                    </div>
+                    <div className='product-home-box'>
+                        <p className='new-in'>NEW IN</p>
+                        <img className='product-home-img cursor-pointer' src={nude[0].images[0].src} alt="" />
+                        <img className='product-home-img hidden cursor-pointer' src={nude[0].images[2].src} alt="" />
+                        <div className='product-info'>
+                            <p className='product-title'>{nude[0].title}</p>
+                            <p className='product-price'>€ {nude[0].variants[0].price}</p>
+                            <p className='product-sizes'>{nude[0].options[0].values}</p> 
+                            <div style={{backgroundColor: nude[0].options[1].values[0]}} className='clothes-colors'> </div>
+                        </div>
+                    </div>
+                    <div className='product-home-box'>
+                        <p className='new-in'>NEW IN</p>
+                        <img className='product-home-img cursor-pointer' src={nude[0].images[0].src} alt="" />
+                        <img className='product-home-img hidden cursor-pointer' src={nude[0].images[2].src} alt="" />
+                        <div className='product-info'>
+                            <p className='product-title'>{nude[0].title}</p>
+                            <p className='product-price'>€ {nude[0].variants[0].price}</p>
+                            <p className='product-sizes'>{nude[0].options[0].values}</p> 
+                            <div style={{backgroundColor: nude[0].options[1].values[0]}} className='clothes-colors'> </div>
+                        </div>
+                    </div>
+                    <div className='product-home-box'>
+                        <p className='new-in'>NEW IN</p>
+                        <img className='product-home-img cursor-pointer' src={nude[0].images[0].src} alt="" />
+                        <img className='product-home-img hidden cursor-pointer' src={nude[0].images[2].src} alt="" />
+                        <div className='product-info'>
+                            <p className='product-title'>{nude[0].title}</p>
+                            <p className='product-price'>€ {nude[0].variants[0].price}</p>
+                            <p className='product-sizes'>{nude[0].options[0].values}</p> 
+                            <div style={{backgroundColor: nude[0].options[1].values[0]}} className='clothes-colors'> </div>
+                        </div>
+                    </div>
+                    <div className='product-home-box'>
+                        <p className='new-in'>NEW IN</p>
+                        <img className='product-home-img cursor-pointer' src={nude[0].images[0].src} alt="" />
+                        <img className='product-home-img hidden cursor-pointer' src={nude[0].images[2].src} alt="" />
+                        <div className='product-info'>
+                            <p className='product-title'>{nude[0].title}</p>
+                            <p className='product-price'>€ {nude[0].variants[0].price}</p>
+                            <p className='product-sizes'>{nude[0].options[0].values}</p> 
+                            <div style={{backgroundColor: nude[0].options[1].values[0]}} className='clothes-colors'> </div>
+                        </div>
+                    </div>
+                    <div className='product-home-box'>
+                        <p className='new-in'>NEW IN</p>
+                        <img className='product-home-img cursor-pointer' src={nude[0].images[0].src} alt="" />
+                        <img className='product-home-img hidden cursor-pointer' src={nude[0].images[2].src} alt="" />
+                        <div className='product-info'>
+                            <p className='product-title'>{nude[0].title}</p>
+                            <p className='product-price'>€ {nude[0].variants[0].price}</p>
+                            <p className='product-sizes'>{nude[0].options[0].values}</p> 
+                            <div style={{backgroundColor: nude[0].options[1].values[0]}} className='clothes-colors'> </div>
+                        </div>
+                    </div>
+                    <div className='product-home-box'>
+                        <p className='new-in'>NEW IN</p>
+                        <img className='product-home-img cursor-pointer' src={nude[0].images[0].src} alt="" />
+                        <img className='product-home-img hidden cursor-pointer' src={nude[0].images[2].src} alt="" />
+                        <div className='product-info'>
+                            <p className='product-title'>{nude[0].title}</p>
+                            <p className='product-price'>€ {nude[0].variants[0].price}</p>
+                            <p className='product-sizes'>{nude[0].options[0].values}</p> 
+                            <div style={{backgroundColor: nude[0].options[1].values[0]}} className='clothes-colors'> </div>
+                        </div>
+                    </div>
+                    <div className='product-home-box'>
+                        <p className='new-in'>NEW IN</p>
+                        <img className='product-home-img cursor-pointer' src={nude[0].images[0].src} alt="" />
+                        <img className='product-home-img hidden cursor-pointer' src={nude[0].images[2].src} alt="" />
+                        <div className='product-info'>
+                            <p className='product-title'>{nude[0].title}</p>
+                            <p className='product-price'>€ {nude[0].variants[0].price}</p>
+                            <p className='product-sizes'>{nude[0].options[0].values}</p> 
+                            <div style={{backgroundColor: nude[0].options[1].values[0]}} className='clothes-colors'> </div>
+                        </div>
+                    </div>
+                    <div className='product-home-box'>
+                        <p className='new-in'>NEW IN</p>
+                        <img className='product-home-img cursor-pointer' src={nude[0].images[0].src} alt="" />
+                        <img className='product-home-img hidden cursor-pointer' src={nude[0].images[2].src} alt="" />
+                        <div className='product-info'>
+                            <p className='product-title'>{nude[0].title}</p>
+                            <p className='product-price'>€ {nude[0].variants[0].price}</p>
+                            <p className='product-sizes'>{nude[0].options[0].values}</p> 
+                            <div style={{backgroundColor: nude[0].options[1].values[0]}} className='clothes-colors'> </div>
+                        </div>
+                    </div>
+                    <div className='product-home-box'>
+                        <p className='new-in'>NEW IN</p>
+                        <img className='product-home-img cursor-pointer' src={nude[0].images[0].src} alt="" />
+                        <img className='product-home-img hidden cursor-pointer' src={nude[0].images[2].src} alt="" />
+                        <div className='product-info'>
+                            <p className='product-title'>{nude[0].title}</p>
+                            <p className='product-price'>€ {nude[0].variants[0].price}</p>
+                            <p className='product-sizes'>{nude[0].options[0].values}</p> 
+                            <div style={{backgroundColor: nude[0].options[1].values[0]}} className='clothes-colors'> </div>
+                        </div>
+                    </div>
                 </div>
                 <ClothesSection />
                 <div className='images-container'>
