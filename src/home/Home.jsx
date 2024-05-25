@@ -25,6 +25,7 @@ import photo15 from '../images/15.jpg';
 import photo16 from '../images/16.webp';
 import Tshirts from '../stores/Tshirts.jsx'
 import Trousers from '../stores/Trousers.jsx'
+import TrustpilotWidget from './TrustAdvisor.jsx';
 import '../styles/index.css';
 import '../styles/reset.css';
 
@@ -189,6 +190,82 @@ function Logos () {
         </div>
     )
 }
+function PackagingSVG () {
+    return (
+        <svg
+        version="1.1"
+        id="Capa_1"
+        xmlns="http://www.w3.org/2000/svg"
+        x="0px"
+        y="0px"
+        viewBox="0 0 20.62 19.12"
+        style={{ enableBackground: 'new 0 0 20.62 19.12' }}
+        xmlSpace="preserve"
+      >
+        <style type="text/css">
+          {`.st0{fill:none;stroke:#4E3523;stroke-width:0.3098;stroke-miterlimit:10;}`}
+        </style>
+        <g>
+          <rect x="13.6" y="10.43" className="st0" width="5.92" height="8.54"></rect>
+          <rect x="1.31" y="10.43" className="st0" width="5.92" height="8.54"></rect>
+          <rect x="13.6" y="4.76" className="st0" width="6.87" height="5.67"></rect>
+          <rect x="0.15" y="4.76" className="st0" width="7.07" height="5.67"></rect>
+          <path
+            className="st0"
+            d="M10.37,4.68c0,0.07,1.06,0.07,2.97,0.07s3.49-0.91,3.49-2.7s-1.49-2.32-3.23-1.59 C11.35,1.42,10.37,2.9,10.37,4.68z"
+          ></path>
+          <path
+            className="st0"
+            d="M10.2,4.68c0,0.07-1.06,0.07-2.97,0.07s-3.49-0.91-3.49-2.7s1.49-2.32,3.23-1.59C9.22,1.42,10.2,2.9,10.2,4.68 z"
+          ></path>
+          <rect x="7.23" y="4.76" className="st0" width="6.37" height="14.21"></rect>
+        </g>
+      </svg>
+    )
+}
+
+function PaymentSVG () {
+    return (
+        <svg
+    version="1.1"
+    className="svg_icon"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 18.46 12.46"
+    xmlSpace="preserve"
+  >
+    <style type="text/css">
+      {`
+        .svg_icon .st0 { fill: #4E3523; }
+        .svg_icon .st1 { fill: none; stroke: #4E3523; stroke-width: 0.2643; stroke-miterlimit: 10; }
+      `}
+    </style>
+    <g>
+      <rect x="0.13" y="3.01" className="st0" width="18.2" height="2.07"></rect>
+      <rect x="0.13" y="0.13" className="st1" width="18.2" height="12.2"></rect>
+    </g>
+  </svg>
+    )
+}
+   
+
+function PackagingAndPayment () {
+    return (
+        <div className='packaging-and-payment-big-box'>
+            <div className='packaging-and-payment-container'>
+                <div id='packaging'>
+                    <PackagingSVG />
+                    <p>EMBLEMATIC PACKAGING</p>
+                    <p>Includes Close Friends access, stickers and many more.</p>
+                </div>
+                <div id='payment'>
+                    <PaymentSVG />
+                    <p>SECURE PAYMENT</p>
+                    <p>Paypal, Apple-Pay, Klarna, Bitcoin and all major credit and debit cards accepted.</p>
+                </div>
+            </div>
+        </div>
+    )
+}
 
 function ClothesSection() {
     const [images, setImages] = useState([]);
@@ -242,7 +319,12 @@ function OurStores() {
             <div id='store'>
                 <img src={stores[position].img} alt={`${stores[position].city} store`} />
                 <div className='city-info-container'>
-                    <a>{stores[position].city} ↗️</a>
+                    <a className='flex gap-2 items-center cursor-pointer'>{stores[position].city}
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.74342 8.97186L8.68751 3.02777M8.68751 3.02777L4.03349 2.19495M8.68751 3.02777L9.52033 7.68179" stroke="#452B1A"></path>
+                                <path d="M2 11.1233H10.41" stroke="#452B1A"></path>
+                        </svg>
+                    </a>
                     <div className='stores-info-box'>
                         <div className='address-box'>
                             <p>{stores[position].street}</p>
@@ -410,7 +492,8 @@ export default function Home() {
                 <PhotosOfCollections />
                 <Quotes />
                 <Logos />
-               
+                <TrustpilotWidget />
+                <PackagingAndPayment />
             </section>
         </div>
     );
