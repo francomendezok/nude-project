@@ -295,6 +295,8 @@ header {
     border-radius: 100%;
     width: 12px;
     height: 12px;
+    border: 1px solid black;
+    margin-top: .5rem;
 }
 
 .clothes-categories-images {
