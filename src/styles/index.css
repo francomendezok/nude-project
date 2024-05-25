@@ -406,7 +406,7 @@ header {
     bottom: 20rem;
     z-index: 1;
     width: 500px;
-    height: 150px;
+    height: 140px;
     padding: 22px 29px 23px 24px;
     background-color: #fff;
 }
@@ -421,14 +421,15 @@ header {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
     margin-top: 2rem;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    font-weight: 400 !important;
 }
 
 .carrousel-position {
     display: flex;
     gap: .4rem;
     position: relative;
-    bottom: 16rem;
+    bottom: 18rem;
     justify-content: center;
 }
 
