@@ -1,5 +1,4 @@
 import { Link, Outlet } from "react-router-dom"
-import logo from './images/nude.png'
 import Logo from "./home/Logo.jsx"
 
 
@@ -12,8 +11,8 @@ export default function Root () {
                     <div className="links">
                         <Link className="hover:font-black" to='collections/all-products'>SHOP</Link>
                         <Link className="hover:font-black" to='collections'>COLLECTIONS</Link>
-                        <Link className="hover:font-black" to='about-us'>ABOUT US</Link>
                         <Link className="hover:font-black" to='stores'>STORES</Link>
+                        <Link className="hover:font-black" to='about-us'>ABOUT US</Link>
                     </div>
                     
                         <Logo location = {0} />
