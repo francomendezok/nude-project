@@ -323,11 +323,24 @@ header {
     top: 25rem;
 }
 
+.product-arrows-container {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    bottom: 18rem;
+}
+
+.product-arrows-container svg {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
 .clothes-colors {
     border-radius: 100%;
     width: 12px;
     height: 12px;
-    border: 1px solid black;
+    border: 1px solid grey;
     margin-top: .5rem;
 }
 
@@ -492,8 +505,12 @@ header {
     justify-content: space-around;
     font-size: 15px;
     font-weight: 500;
-    margin-top: 1rem;
+    margin-top: .3rem;
     color: black;
+}
+
+.product-sizes-container p {
+    cursor: pointer;
 }
 
 #packaging, #payment {

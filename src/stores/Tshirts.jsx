@@ -3,32 +3,39 @@ import { useState } from 'react';
 import ProductArrows from '../home/ProductArrows';
 
 
-function handleMouseEnter (product, setImage, newImage, setShowSize, setHideInfo) {
-    setImage(product.images[newImage].src)
+function handleMouseEnter (product, image, setImage, newImage, setShowSize, setHideInfo, setShowArrows) {
+    if (image === nude[0].images[0].src) {
+        setImage(product.images[newImage].src)
+    }
     setShowSize(true)
     setHideInfo(true)
+    setShowArrows(true)
 }
-function handleMouseLeave (product, setImage, newImage, setShowSize, setHideInfo) {
-    setImage(product.images[newImage].src)
+function handleMouseLeave (product, image, setImage, newImage, setShowSize, setHideInfo, setShowArrows) {
+    if (image === nude[0].images[1].src) {
+        setImage(product.images[newImage].src)
+    }
     setShowSize(false)
     setHideInfo(false)
+    setShowArrows(false)    
 }
 
 
 
 export default function Tshirts () {
-    const [showArrows, setShowArros] = useState(false)
-    
-    const [image1, setImage1] = useState(nude[0].images[0].src)
+    const [showArrows, setShowArrows] = useState(false)
+    const [position, setPosition] = useState(0)
+    const [image, setImage] = useState(nude[0].images[0].src)
     const [showSizes, setShowSize] = useState(false)
     const [hideInfo, setHideInfo] = useState(false)
+
     return (
         <div className='images-container'>
 
-            <div className='product-home-box'>
+            <div onMouseEnter={() => handleMouseEnter(nude[0], image, setImage, 1, setShowSize, setHideInfo, setShowArrows)} onMouseLeave={() => handleMouseLeave(nude[0], image, setImage, 0, setShowSize, setHideInfo, setShowArrows)} className='product-home-box'>
                 <p className='new-in'>NEW IN</p>
-                <img onMouseEnter={() => handleMouseEnter(nude[0], setImage1, 1, setShowSize, setHideInfo)} onMouseLeave={() => handleMouseLeave(nude[0], setImage1, 0, setShowSize, setHideInfo)} className='product-home-img cursor-pointer' src={image1} alt="" />
-                {showArrows ? <ProductArrows/> : ''}
+                <img className='product-home-img cursor-pointer' src={image} alt="" />
+                {showArrows ? <ProductArrows position={position} setPosition={setPosition} setImage={setImage} product={nude[0]} /> : ''}
                 <div className={hideInfo ? 'hidden' : 'product-info'}>
                     <p className='product-title'>{nude[0].title}</p>
                     <p className='product-price'>€ {nude[0].variants[0].price}</p>
