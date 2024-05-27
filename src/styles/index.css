@@ -252,7 +252,7 @@ header {
 
 .images-container {
     width: 100%;
-    height: 300vh;
+    height: 200vh;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr;
@@ -571,4 +571,3 @@ header {
 .bottom-banner:hover {
     color: transparent;
 }
-
