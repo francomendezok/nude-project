@@ -21,23 +21,41 @@ function handleMouseLeave (product, image, setImage, newImage, setShowSize, setH
     setShowArrows(false)    
 }
 
-function handleQuickAdd (setShowQuickAdd, showQuickAdd) {
-    setShowQuickAdd(!showQuickAdd)
+function handleQuickAdd (setShowQuickAdd, showQuickAdd, hoverSize, setHoverSize, size) {
+    setShowQuickAdd(showQuickAdd)
+    setHoverSize(size)
 }
 
-function QuickAdd () {
+function QuickAdd ({size, hoverSize}) {
+    if (size === hoverSize) {
+        return (
+            <div id={size} className='quick-add arrowBottom'>
+                QUICK ADD
+            </div>
+        )
+    }
+}
+
+function Size ({product, size, value, setShowQuickAdd, showQuickAdd, hoverSize, setHoverSize}) {
+    const cross = product.options[0].values[value] == null ? "crossed" : '';
+
     return (
-        <div className='quick-add arrowBottom'>
-            QUICK ADD
+        <div className='p-size'>
+            <div className={`quick-add-container arrowBottom ${showQuickAdd && !cross ? 'show' : ''}`}>
+                {showQuickAdd && !cross ? <QuickAdd size={size} hoverSize={hoverSize} /> : null}
+            </div>
+            <p 
+                id={size} 
+                onMouseEnter={() => handleQuickAdd(setShowQuickAdd, true, hoverSize, setHoverSize, size)} 
+                onMouseLeave={() => handleQuickAdd(setShowQuickAdd, false, hoverSize, setHoverSize, size)} 
+                className={cross}
+            >
+                {size}
+            </p>
         </div>
     )
 }
 
-function Size ({product, size, value}) {
-    return (
-        <p className={product.options[0].values[value] == null ? "crossed" : ''}>{size}</p>
-    )
-}
 
 
 
@@ -47,8 +65,9 @@ function Shirt ({product, color}) {
     const [image, setImage] = useState(product.images[0].src)
     const [showSizes, setShowSize] = useState(false)
     const [hideInfo, setHideInfo] = useState(false)
-    const [showQuickAdd, setShowQuickAdd] = useState(true)
+    const [showQuickAdd, setShowQuickAdd] = useState(false)
     const [showCart, setShowCart] = useState(false)
+    const [hoverSize, setHoverSize] = useState('')
 
     return (
         <div onMouseEnter={() => handleMouseEnter(product, image, setImage, 1, setShowSize, setHideInfo, setShowArrows)} onMouseLeave={() => handleMouseLeave(product, image, setImage, 0, setShowSize, setHideInfo, setShowArrows)} className='product-home-box'>
@@ -63,12 +82,12 @@ function Shirt ({product, color}) {
             <div className={showSizes ? "product-sizes-container" : "hidden"}>
                     {/* {showQuickAdd ? <QuickAdd /> : ""} */}
                     {/* P should be a component that changes state to show QuickAdd*/}
-                <Size product={product} size={"XS"} value={0} />
-                <Size product={product} size={"S"} value={1} />
-                <Size product={product} size={"M"} value={2} />
-                <Size product={product} size={"L"} value={3} />
-                <Size product={product} size={"XL"} value={4} />
-                <Size product={product} size={"XXL"} value={5} />
+                <Size product={product} size={"XS"} value={0} setShowQuickAdd={setShowQuickAdd} showQuickAdd={showQuickAdd} hoverSize={hoverSize} setHoverSize={setHoverSize} />
+                <Size product={product} size={"S"} value={1} setShowQuickAdd={setShowQuickAdd} showQuickAdd={showQuickAdd} hoverSize={hoverSize} setHoverSize={setHoverSize} />
+                <Size product={product} size={"M"} value={2} setShowQuickAdd={setShowQuickAdd} showQuickAdd={showQuickAdd} hoverSize={hoverSize} setHoverSize={setHoverSize} />
+                <Size product={product} size={"L"} value={3} setShowQuickAdd={setShowQuickAdd} showQuickAdd={showQuickAdd} hoverSize={hoverSize} setHoverSize={setHoverSize} />
+                <Size product={product} size={"XL"} value={4} setShowQuickAdd={setShowQuickAdd} showQuickAdd={showQuickAdd} hoverSize={hoverSize} setHoverSize={setHoverSize} />
+                <Size product={product} size={"XXL"} value={5} setShowQuickAdd={setShowQuickAdd} showQuickAdd={showQuickAdd} hoverSize={hoverSize} setHoverSize={setHoverSize} />
             </div>
     </div>
     )
