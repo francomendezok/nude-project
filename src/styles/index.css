@@ -151,6 +151,48 @@ header {
     margin-top: 40rem;
 }
 
+.quick-add {
+    width: 40px;
+    height: 30px;
+    background-color: #452b1a;
+    color: white;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+
+/* BOTTOM ARROW */
+.arrowBottom{
+    position:relative;
+    margin: 20px;
+    width:80px;
+    height: 30px;
+    float: left;
+   }
+   
+   .arrowBottom:before, .arrowBottom:after {
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    left: 20px;
+    content: " ";
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;   
+    }
+    .arrowBottom:after {
+    border-top: 14px solid #452b1a;
+    bottom: -14px;
+    z-index: 1;
+    }
+    .arrowBottom:before {
+    bottom: -15px;
+    z-index: 1;
+    }
+
 #logo {
     fill: #452b1a;
 } 
@@ -500,12 +542,12 @@ header {
 
 .product-sizes-container {
     display: flex;
-    width: 60%;
+    width: 80%;
     align-items: center;
     justify-content: space-around;
     font-size: 15px;
     font-weight: 500;
-    margin-top: .3rem;
+    margin-top: 2rem;
     color: black;
 }
 
@@ -555,6 +597,8 @@ header {
 .left-arrow, .right-arrow  {
     cursor: pointer;
 }
+
+
 
 .bottom-banner {
     color: #fff;
