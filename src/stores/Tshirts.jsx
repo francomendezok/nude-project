@@ -36,17 +36,17 @@ function getProducts (ids) {
 
 let products = getProducts(ids)
 
-function handleMouseEnter (product, image, setImage, newImage, setShowSize, setHideInfo, setShowArrows) {
-    if (image === product.images[0].src) {
-        setImage(product.images[newImage].src)
+function handleMouseEnter (product, position, setPosition, newImage, setShowSize, setHideInfo, setShowArrows) {
+    if (position === 0) {
+        setPosition(newImage)
     }
     setShowSize(true)
     setHideInfo(true)
     setShowArrows(true)
 }
-function handleMouseLeave (product, image, setImage, newImage, setShowSize, setHideInfo, setShowArrows) {
-    if (image === product.images[1].src) {
-        setImage(product.images[newImage].src)
+function handleMouseLeave (product, position, setPosition, newImage, setShowSize, setHideInfo, setShowArrows) {
+    if (position === 1) {
+        setPosition(newImage)
     }
     setShowSize(false)
     setHideInfo(false)
@@ -81,10 +81,10 @@ function Size ({product, size, value}) {
 
 
 
-function Shirt ({product, color}) {
+function Shirt ({product, color, length}) {
     const [showArrows, setShowArrows] = useState(false)
     const [position, setPosition] = useState(0)
-    const [image, setImage] = useState(product.images[0].src)
+    const [image, setImage] = useState(product.id)
     const [showSizes, setShowSize] = useState(false)
     const [hideInfo, setHideInfo] = useState(false)
     const [showQuickAdd, setShowQuickAdd] = useState(false)
@@ -92,10 +92,10 @@ function Shirt ({product, color}) {
     const [hoverSize, setHoverSize] = useState('')
 
     return (
-        <div onClick={() => handleMouseEnter(product, image, setImage, 1, setShowSize, setHideInfo, setShowArrows)} onClickCapture={() => handleMouseLeave(product, image, setImage, 0, setShowSize, setHideInfo, setShowArrows)} className='product-home-box'>
+        <div onMouseEnter={() => handleMouseEnter(product, position, setPosition, 1, setShowSize, setHideInfo, setShowArrows)} onMouseLeave={() => handleMouseLeave(product, position, setPosition, 0, setShowSize, setHideInfo, setShowArrows)} className='product-home-box'>
             <p className='new-in'>NEW IN</p>
-            <ImageComponent folder={ids[0]} number={0} />
-            {showArrows ? <ProductArrows position={position} setPosition={setPosition} setImage={setImage} product={product} /> : ''}
+            <ImageComponent folder={image} number={position} />
+            {showArrows ? <ProductArrows position={position} setPosition={setPosition} length={length} /> : ''}
             <div className={hideInfo ? 'hidden' : 'product-info'}>
                 <p className='product-title'>{product.title}</p>
                 <p className='product-price'>€ {product.variants[0].price}</p>
@@ -115,7 +115,6 @@ function Shirt ({product, color}) {
 }
 
 function ImageComponent ({folder, number}) {
-    console.log(folder);
     return (
         <img className='cursor-pointer' src={`/images/Shirts/${folder}/${number}.webp`} alt="Example" /> 
     )
@@ -125,22 +124,22 @@ function ImageComponent ({folder, number}) {
 export default function Tshirts () {
     return (
         <div className='images-container'>
-            <Shirt product={products[0]} number={0} /> 
-            {/* <Shirt product={nude[36]} /> 
-            <Shirt product={nude[37]} /> 
-            <Shirt product={nude[34]} color={"lightblue"} /> 
-            <Shirt product={nude[4]} /> 
-            <Shirt product={nude[5]} /> 
-            <Shirt product={nude[9]} color={"#000080"} /> 
-            <Shirt product={nude[10]} /> 
-            <Shirt product={nude[11]} /> 
-            <Shirt product={nude[12]} /> 
-            <Shirt product={nude[13]} color={"#89CFF0"} /> 
-            <Shirt product={nude[14]} color={"#B2BEB5"} /> 
-            <Shirt product={nude[15]} /> 
-            <Shirt product={nude[16]} color={"#B2BEB5"} /> 
-            <Shirt product={nude[20]} color={"#89CFF0"} /> 
-            <Shirt product={nude[30]} color={"#B2BEB5"} />  */}
+            <Shirt product={products[0]} length={3} /> 
+            <Shirt product={products[1]} length={4} /> 
+            <Shirt product={products[2]} length={7} /> 
+            <Shirt product={products[3]} length={5} /> 
+            <Shirt product={products[4]} length={5} /> 
+            <Shirt product={products[5]} length={4} /> 
+            <Shirt product={products[6]} length={2} /> 
+            <Shirt product={products[7]} length={2} /> 
+            <Shirt product={products[8]} length={3} /> 
+            <Shirt product={products[9]} length={5} /> 
+            <Shirt product={products[10]} length={8} /> 
+            <Shirt product={products[11]} length={8} /> 
+            <Shirt product={products[12]} length={6} color={'#0a0d0d'} /> 
+            <Shirt product={products[13]} length={5} /> 
+            <Shirt product={products[14]} length={4} /> 
+            <Shirt product={products[15]} length={4} />             
         </div>
     )
 }

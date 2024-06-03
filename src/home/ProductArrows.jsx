@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
-export default function ProductArrows({position, setPosition, setImage, product}) {
+export default function ProductArrows({position, setPosition, length}) {
     return (
         <div className="product-arrows-container">
             <svg 
-                onClick={() => handlePosition(position, setPosition, "left", setImage, product)}
+                onClick={() => handlePosition(position, setPosition, "left", length)}
                 className='left-arrow' 
                 fill="#808080" 
                 height="12px" 
@@ -25,7 +25,7 @@ export default function ProductArrows({position, setPosition, setImage, product}
                 </g>
             </svg>
             <svg
-                onClick={() => handlePosition(position, setPosition, "right", setImage, product)}
+                onClick={() => handlePosition(position, setPosition, "right", length)}
                 className='right-arrow'
                 fill="#808080"
                 height="12px"
@@ -56,9 +56,9 @@ export default function ProductArrows({position, setPosition, setImage, product}
     );
 }
 
-function handlePosition(position, setPosition, side, setImage, product) {
+function handlePosition(position, setPosition, side, length) {
     if (side === "right") {
-        if (position <= 4 ) {
+        if (position < length ) {
             setPosition(position + 1)
         }
         else {
@@ -69,10 +69,9 @@ function handlePosition(position, setPosition, side, setImage, product) {
             setPosition(position - 1)
 
         } else {
-            setPosition(4)
+            setPosition(length)
         }
     }
-    setImage(product.images[position].src)
 
 }
 
