@@ -1,8 +1,40 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import nude from '../api/nude.json';
 import { useState } from 'react';
 import ProductArrows from '../home/ProductArrows';
 
+let ids = [
+    8858950107460,
+    8915764740420,
+    8915769164100,
+    8915779289412,
+    8915783549252,
+    8915825492292,
+    8915826377028,
+    8926544691524,
+    8926979948868,
+    8926980211012,
+    8926982865220,
+    8926985683268,
+    8944216015172,
+    8944223453508,
+    8944227254596,
+    8955406811460
+]
+
+
+function getProducts (ids) {
+    let myProducts = []
+    for (let i = 0; i < nude.length; i++) {
+            if (ids.includes(nude[i].id)) {
+                myProducts.push(nude[i])
+            }   
+    }
+    return myProducts
+}
+
+let products = getProducts(ids)
 
 function handleMouseEnter (product, image, setImage, newImage, setShowSize, setHideInfo, setShowArrows) {
     if (image === product.images[0].src) {
@@ -36,22 +68,12 @@ function QuickAdd ({size, hoverSize}) {
     }
 }
 
-function Size ({product, size, value, setShowQuickAdd, showQuickAdd, hoverSize, setHoverSize}) {
+function Size ({product, size, value}) {
     const cross = product.options[0].values[value] == null ? "crossed" : '';
 
     return (
         <div className='p-size'>
-            <div className={`quick-add-container arrowBottom ${showQuickAdd && !cross ? 'show' : ''}`}>
-                {showQuickAdd && !cross ? <QuickAdd size={size} hoverSize={hoverSize} /> : null}
-            </div>
-            <p 
-                id={size} 
-                onMouseEnter={() => handleQuickAdd(setShowQuickAdd, true, hoverSize, setHoverSize, size)} 
-                onMouseLeave={() => handleQuickAdd(setShowQuickAdd, false, hoverSize, setHoverSize, size)} 
-                className={cross}
-            >
-                {size}
-            </p>
+            <p id={size} className={cross}>{size}</p>
         </div>
     )
 }
@@ -70,9 +92,9 @@ function Shirt ({product, color}) {
     const [hoverSize, setHoverSize] = useState('')
 
     return (
-        <div onMouseEnter={() => handleMouseEnter(product, image, setImage, 1, setShowSize, setHideInfo, setShowArrows)} onMouseLeave={() => handleMouseLeave(product, image, setImage, 0, setShowSize, setHideInfo, setShowArrows)} className='product-home-box'>
+        <div onClick={() => handleMouseEnter(product, image, setImage, 1, setShowSize, setHideInfo, setShowArrows)} onClickCapture={() => handleMouseLeave(product, image, setImage, 0, setShowSize, setHideInfo, setShowArrows)} className='product-home-box'>
             <p className='new-in'>NEW IN</p>
-            <img className='product-home-img cursor-pointer' src={image} alt="" />
+            <ImageComponent folder={ids[0]} number={0} />
             {showArrows ? <ProductArrows position={position} setPosition={setPosition} setImage={setImage} product={product} /> : ''}
             <div className={hideInfo ? 'hidden' : 'product-info'}>
                 <p className='product-title'>{product.title}</p>
@@ -80,29 +102,33 @@ function Shirt ({product, color}) {
                 <div style={{backgroundColor: color ? color : product.options[1].values[0]}} className='clothes-colors'> </div>
             </div>
             <div className={showSizes ? "product-sizes-container" : "hidden"}>
-                    {/* {showQuickAdd ? <QuickAdd /> : ""} */}
                     {/* P should be a component that changes state to show QuickAdd*/}
-                <Size product={product} size={"XS"} value={0} setShowQuickAdd={setShowQuickAdd} showQuickAdd={showQuickAdd} hoverSize={hoverSize} setHoverSize={setHoverSize} />
-                <Size product={product} size={"S"} value={1} setShowQuickAdd={setShowQuickAdd} showQuickAdd={showQuickAdd} hoverSize={hoverSize} setHoverSize={setHoverSize} />
-                <Size product={product} size={"M"} value={2} setShowQuickAdd={setShowQuickAdd} showQuickAdd={showQuickAdd} hoverSize={hoverSize} setHoverSize={setHoverSize} />
-                <Size product={product} size={"L"} value={3} setShowQuickAdd={setShowQuickAdd} showQuickAdd={showQuickAdd} hoverSize={hoverSize} setHoverSize={setHoverSize} />
-                <Size product={product} size={"XL"} value={4} setShowQuickAdd={setShowQuickAdd} showQuickAdd={showQuickAdd} hoverSize={hoverSize} setHoverSize={setHoverSize} />
-                <Size product={product} size={"XXL"} value={5} setShowQuickAdd={setShowQuickAdd} showQuickAdd={showQuickAdd} hoverSize={hoverSize} setHoverSize={setHoverSize} />
+                <Size product={product} size={"XS"} value={0} />
+                <Size product={product} size={"S"} value={1} />
+                <Size product={product} size={"M"} value={2} />
+                <Size product={product} size={"L"} value={3} />
+                <Size product={product} size={"XL"} value={4} />
+                <Size product={product} size={"XXL"} value={5} />
             </div>
     </div>
     )
 }
 
+function ImageComponent ({folder, number}) {
+    console.log(folder);
+    return (
+        <img className='cursor-pointer' src={`/images/Shirts/${folder}/${number}.webp`} alt="Example" /> 
+    )
+  }
 
 
 export default function Tshirts () {
-
     return (
         <div className='images-container'>
-            <Shirt product={nude[0]} /> 
-            <Shirt product={nude[1]} /> 
-            <Shirt product={nude[2]} /> 
-            <Shirt product={nude[3]} color={"lightblue"} /> 
+            <Shirt product={products[0]} number={0} /> 
+            {/* <Shirt product={nude[36]} /> 
+            <Shirt product={nude[37]} /> 
+            <Shirt product={nude[34]} color={"lightblue"} /> 
             <Shirt product={nude[4]} /> 
             <Shirt product={nude[5]} /> 
             <Shirt product={nude[9]} color={"#000080"} /> 
@@ -114,7 +140,7 @@ export default function Tshirts () {
             <Shirt product={nude[15]} /> 
             <Shirt product={nude[16]} color={"#B2BEB5"} /> 
             <Shirt product={nude[20]} color={"#89CFF0"} /> 
-            <Shirt product={nude[30]} color={"#B2BEB5"} /> 
+            <Shirt product={nude[30]} color={"#B2BEB5"} />  */}
         </div>
     )
 }

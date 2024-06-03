@@ -29,7 +29,7 @@ function Trouser ({product, color}) {
     const [hideInfo, setHideInfo] = useState(false)
 
     return (
-        <div onMouseEnter={() => handleMouseEnter(product, image, setImage, 2, setShowSize, setHideInfo, setShowArrows)} onMouseLeave={() => handleMouseLeave(product, image, setImage, 0, setShowSize, setHideInfo, setShowArrows)} className='product-home-box'>
+        <div onMouseEnter={() => handleMouseEnter(product, image, setImage, 2 || 3, setShowSize, setHideInfo, setShowArrows)} onMouseLeave={() => handleMouseLeave(product, image, setImage, 0, setShowSize, setHideInfo, setShowArrows)} className='product-home-box'>
         <p className='new-in'>NEW IN</p>
         <img className='product-home-img cursor-pointer' src={image} alt="" />
         {showArrows ? <ProductArrows position={position} setPosition={setPosition} setImage={setImage} product={product} /> : ''}
@@ -55,19 +55,19 @@ export default function Trousers () {
         <div className='images-container'>
             <Trouser product={nude[91]} />
             <Trouser product={nude[92]} color={"lightgreen"} />
-            <Trouser product={nude[93]} color={"#F5F5DC"} />
-            <Trouser product={nude[94]} color={"#013220"} />
-            <Trouser product={nude[95]} color={"#89CFF0"} />
+            <Trouser product={nude[301]} color={"#F5F5DC"} />
+            <Trouser product={nude[295]} color={"#013220"} />
+            <Trouser product={nude[296]} color={"#89CFF0"} />
             <Trouser product={nude[96]} color={"white"} />
             <Trouser product={nude[97]} color={"#B2BEB5"} />
             <Trouser product={nude[98]} color={"#98fb98"} />
-            <Trouser product={nude[99]} color={"#89CFF0"} />
+            <Trouser product={nude[0]} color={"#89CFF0"} />
             <Trouser product={nude[100]} />
             <Trouser product={nude[101]} color={"#808000"} />
             <Trouser product={nude[102]} />
-            <Trouser product={nude[103]} color={"grey"} />
-            <Trouser product={nude[104]} color={"#808000"} />
-            <Trouser product={nude[105]} color={"#9B7F5B"} />
+            <Trouser product={nude[1]} color={"grey"} />
+            <Trouser product={nude[2]} color={"#808000"} />
+            <Trouser product={nude[3]} color={"#9B7F5B"} />
             <Trouser product={nude[300]} color={"#FFFDD0"} />
         </div>
     )

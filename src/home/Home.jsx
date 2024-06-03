@@ -372,8 +372,7 @@ export default function Home() {
             "https://nude-project.com/cdn/shop/files/aSin_titulo-2.jpg?v=1715263768",
             "https://nude-project.com/cdn/shop/files/Sin_titulo-1_copia_40.jpg?v=1712850111",
             "https://nude-project.com/cdn/shop/files/Sin_titulo-8_02826557-3039-4635-8515-9a0ca9b9ff4e.jpg?v=1715263757",
-            ...nude.slice(0, 16).map(product => product.images[0].src),
-            ...nude.slice(91, 103).map(product => product.images[0].src),
+            ...nude.slice(0, 490).map(product => product.images[0].src),
             ...stores.map(store => store.img)
         ];
 
@@ -382,9 +381,12 @@ export default function Home() {
             .catch(error => console.error("Error loading images:", error));
     }, []);
 
-    if (isLoading) {
-        return <img className='loading' src={logo} alt="" />
-    }
+
+    
+
+    // if (isLoading) {
+    //     return <img className='loading' src={logo} alt="" />
+    // }
 
     return (
         <div>

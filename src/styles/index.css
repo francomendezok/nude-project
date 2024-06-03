@@ -318,7 +318,7 @@ header {
 
 .images-container {
     width: 100%;
-    height: 200vh;
+    height: 300vh;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr;
@@ -576,7 +576,6 @@ header {
 }
 
 .p-size {
-    border: 4px solid green;
     height: 30px;
     display: flex;
 }
