@@ -4,37 +4,7 @@ import nude from '../api/nude.json';
 import { useState } from 'react';
 import ProductArrows from '../home/ProductArrows';
 
-let ids = [
-    8858950107460,
-    8915764740420,
-    8915769164100,
-    8915779289412,
-    8915783549252,
-    8915825492292,
-    8915826377028,
-    8926544691524,
-    8926979948868,
-    8926980211012,
-    8926982865220,
-    8926985683268,
-    8944216015172,
-    8944223453508,
-    8944227254596,
-    8955406811460
-]
 
-
-function getProducts (ids) {
-    let myProducts = []
-    for (let i = 0; i < nude.length; i++) {
-            if (ids.includes(nude[i].id)) {
-                myProducts.push(nude[i])
-            }   
-    }
-    return myProducts
-}
-
-let products = getProducts(ids)
 
 function handleMouseEnter (product, position, setPosition, newImage, setShowSize, setHideInfo, setShowArrows) {
     if (position === 0) {
@@ -121,7 +91,20 @@ function ImageComponent ({folder, number}) {
   }
 
 
-export default function Tshirts () {
+export default function Tshirts ({shirtsIds}) {
+    
+function getProducts (ids) {
+    let myProducts = []
+    for (let i = 0; i < nude.length; i++) {
+            if (ids.includes(nude[i].id)) {
+                myProducts.push(nude[i])
+            }   
+    }
+    return myProducts
+}
+
+let products = getProducts(shirtsIds)
+
     return (
         <div className='images-container'>
             <Shirt product={products[0]} length={3} /> 

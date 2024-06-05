@@ -36,22 +36,6 @@ const quotes = [
 ]
 
 
-const loadImage = (url) => {
-    return new Promise((resolve, reject) => {
-        const img = new Image();
-        img.src = url;
-        img.onload = () => resolve(url);
-        img.onerror = (error) => reject(error);
-    });
-};
-
-
-
-
-
-
-
-
 function Quotes () {
     const [index, setIndex] = useState(0);
     const [fade, setFade] = useState(true);
@@ -361,32 +345,87 @@ function Slideshow() {
 }
 console.log(nude)
 
+const loadImage = (url) => {
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.src = url;
+        img.onload = () => resolve(url);
+        img.onerror = (error) => {
+            console.error(`Error loading image: ${url}`, error);
+            reject(error);
+        };
+    });
+};
+
+
+
 export default function Home() {
     const [isLoading, setIsLoading] = useState(true);
+    let shirtsIds = [
+        8858950107460,
+        8915764740420,
+        8915769164100,
+        8915779289412,
+        8915783549252,
+        8915825492292,
+        8915826377028,
+        8926544691524,
+        8926979948868,
+        8926980211012,
+        8926982865220,
+        8926985683268,
+        8944216015172,
+        8944223453508,
+        8944227254596,
+        8955406811460
+    ]  
+    let trousersIds = [
+        8370424840516,
+        8376801100100,
+        8376806998340,
+        8376810570052,
+        8376813617476,
+        8768227934532,
+        8768241500484,
+        8858992017732,
+        8858993688900,
+        8995433873732,
+        8995435708740,
+        8995452485956,
+        8995453763908,
+        8995461595460,
+        8995463921988,
+        8995476635972
+    ]
 
     useEffect(() => {
+        const shirtImages = shirtsIds.flatMap(id => 
+            Array.from({ length: 2 }, (_, i) => `/images/Shirts/${id}/${i + 1}.webp`)
+        );
+
+        const trouserImages = trousersIds.flatMap(id => 
+            Array.from({ length: 2 }, (_, i) => `/images/Trousers/${id}/${i + 1}.webp`)
+        );
         const imagesToLoad = [
+            ...shirtImages,
+            ...trouserImages,
             banner1,
             banner2,
             banner3,
             "https://nude-project.com/cdn/shop/files/aSin_titulo-2.jpg?v=1715263768",
             "https://nude-project.com/cdn/shop/files/Sin_titulo-1_copia_40.jpg?v=1712850111",
             "https://nude-project.com/cdn/shop/files/Sin_titulo-8_02826557-3039-4635-8515-9a0ca9b9ff4e.jpg?v=1715263757",
-            ...nude.slice(0, 490).map(product => product.images[0].src),
             ...stores.map(store => store.img)
         ];
 
         Promise.all(imagesToLoad.map(url => loadImage(url)))
             .then(() => setIsLoading(false))
             .catch(error => console.error("Error loading images:", error));
-    }, []);
+    });
 
-
-    
-
-    // if (isLoading) {
-    //     return <img className='loading' src={logo} alt="" />
-    // }
+    if (isLoading) {
+        return <img className='loading' src={logo} alt="Loading..." />;
+    }
 
     return (
         <div>
@@ -394,11 +433,11 @@ export default function Home() {
             <section className="new-arrivals-home">
                 <div className='flex items-center w-full pl-6 pr-6 pt-4 -mb-10 justify-between'>
                     <h2 className="text-xl font-bold">NEW ARRIVALS</h2>
-                    <Link className="underline text-xl text-slate-950" to="">VIEW ALL </Link>
+                    <Link className="underline text-xl text-slate-950" to="">VIEW ALL</Link>
                 </div>
-                <Tshirts />
+                <Tshirts shirtsIds={shirtsIds} />
                 <ClothesSection />
-                <Trousers />
+                <Trousers trousersIds={trousersIds}/>
                 <OurStores />
                 <PhotosOfCollections />
                 <Quotes />
