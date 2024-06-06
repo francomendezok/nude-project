@@ -23,26 +23,26 @@ function handleMouseLeave (product, position, setPosition, newImage, setShowSize
     setShowArrows(false)    
 }
 
-function handleQuickAdd (setShowQuickAdd, showQuickAdd, hoverSize, setHoverSize, size) {
-    setShowQuickAdd(showQuickAdd)
-    setHoverSize(size)
+function handleQuickAdd (setShowQuickAdd, value) {
+    setShowQuickAdd(value)
 }
 
-function QuickAdd ({size, hoverSize}) {
-    if (size === hoverSize) {
+function QuickAdd () {
+    
         return (
-            <div id={size} className='quick-add arrowBottom'>
+            <div className='quick-add'>
                 QUICK ADD
             </div>
         )
-    }
+    
 }
 
-function Size ({product, size, value}) {
+function Size ({product, size, value, showQuickAdd, setShowQuickAdd}) {
     const cross = product.options[0].values[value] == null ? "crossed" : '';
 
     return (
-        <div className='p-size'>
+        <div onMouseEnter={() => handleQuickAdd(setShowQuickAdd, true)} onMouseLeave={() => handleQuickAdd(setShowQuickAdd, false)} className='p-size'>
+            {showQuickAdd ? <QuickAdd /> : null}
             <p id={size} className={cross}>{size}</p>
         </div>
     )
@@ -59,7 +59,6 @@ function Shirt ({product, color, length}) {
     const [hideInfo, setHideInfo] = useState(false)
     const [showQuickAdd, setShowQuickAdd] = useState(false)
     const [showCart, setShowCart] = useState(false)
-    const [hoverSize, setHoverSize] = useState('')
 
     return (
         <div onMouseEnter={() => handleMouseEnter(product, position, setPosition, 1, setShowSize, setHideInfo, setShowArrows)} onMouseLeave={() => handleMouseLeave(product, position, setPosition, 0, setShowSize, setHideInfo, setShowArrows)} className='product-home-box'>
@@ -73,12 +72,12 @@ function Shirt ({product, color, length}) {
             </div>
             <div className={showSizes ? "product-sizes-container" : "hidden"}>
                     {/* P should be a component that changes state to show QuickAdd*/}
-                <Size product={product} size={"XS"} value={0} />
-                <Size product={product} size={"S"} value={1} />
-                <Size product={product} size={"M"} value={2} />
-                <Size product={product} size={"L"} value={3} />
-                <Size product={product} size={"XL"} value={4} />
-                <Size product={product} size={"XXL"} value={5} />
+                <Size product={product} size={"XS"} value={0} showQuickAdd={showQuickAdd} setShowQuickAdd={setShowQuickAdd} />
+                <Size product={product} size={"S"} value={1} showQuickAdd={showQuickAdd} setShowQuickAdd={setShowQuickAdd} />
+                <Size product={product} size={"M"} value={2} showQuickAdd={showQuickAdd} setShowQuickAdd={setShowQuickAdd} />
+                <Size product={product} size={"L"} value={3} showQuickAdd={showQuickAdd} setShowQuickAdd={setShowQuickAdd} />
+                <Size product={product} size={"XL"} value={4} showQuickAdd={showQuickAdd} setShowQuickAdd={setShowQuickAdd} />
+                <Size product={product} size={"XXL"} value={5} showQuickAdd={showQuickAdd} setShowQuickAdd={setShowQuickAdd} />
             </div>
     </div>
     )

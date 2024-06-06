@@ -424,7 +424,11 @@ export default function Home() {
     });
 
     if (isLoading) {
-        return <img className='loading' src={logo} alt="Loading..." />;
+        return (
+            <div className='loading-container'>
+                <img className='loading' src={logo} alt="Loading..." />;
+            </div>
+        )
     }
 
     return (
@@ -440,10 +444,12 @@ export default function Home() {
                 <Trousers trousersIds={trousersIds}/>
                 <OurStores />
                 <PhotosOfCollections />
-                <Quotes />
-                <Logos />
-                <TrustpilotWidget />
-                <PackagingAndPayment />
+                <div className='trust-info-container'>
+                    <Quotes />
+                    <Logos />
+                    <TrustpilotWidget />
+                    <PackagingAndPayment />
+                </div>
             </section>
         </div>
     );
