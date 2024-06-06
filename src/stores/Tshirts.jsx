@@ -23,27 +23,30 @@ function handleMouseLeave (product, position, setPosition, newImage, setShowSize
     setShowArrows(false)    
 }
 
-function handleQuickAdd (setShowQuickAdd, value) {
+function handleQuickAdd (setShowQuickAdd, value, setActive, size) {
     setShowQuickAdd(value)
+    setActive(size)
 }
 
-function QuickAdd () {
-    
-        return (
-            <div className='quick-add'>
-                QUICK ADD
-            </div>
-        )
+function QuickAdd ({size, active}) {
+        if (size === active) {
+            return (
+                <div className='quick-add'>
+                     QUICK ADD
+                </div>
+            )
+        }
     
 }
 
 function Size ({product, size, value, showQuickAdd, setShowQuickAdd}) {
     const cross = product.options[0].values[value] == null ? "crossed" : '';
+    const [active, setActive] = useState('')
 
     return (
-        <div onMouseEnter={() => handleQuickAdd(setShowQuickAdd, true)} onMouseLeave={() => handleQuickAdd(setShowQuickAdd, false)} className='p-size'>
-            {showQuickAdd ? <QuickAdd /> : null}
-            <p id={size} className={cross}>{size}</p>
+        <div onMouseEnter={() => handleQuickAdd(setShowQuickAdd, true, setActive, size)} onMouseLeave={() => handleQuickAdd(setShowQuickAdd, false, setActive, '')} className='p-size'>
+            {showQuickAdd ? <QuickAdd size={size} active={active} /> : null}
+            <p onClick={() => alert(`open cart and add to main object. Add ${product.title} size ${size}`)} id={size} className={cross}>{size}</p>
         </div>
     )
 }

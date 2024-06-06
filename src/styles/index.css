@@ -170,20 +170,6 @@ header {
     display: block; 
 }
 
-.quick-add-container {
-    position: absolute; 
-    left: -140%;
-    right: 0;
-    height: 0; 
-    transition: height .3s ease; 
-}
-
-.quick-add-container.show {
-    position: absolute;
-    bottom: .5rem;
-    height: 6rem;
-    width: 8rem;
-}
 
 .quick-add {
     color: white;
@@ -192,7 +178,15 @@ header {
     text-align: center; 
     display: flex;
     align-items: center;
+    justify-content: center;
     padding: 1rem;
+    width: 80px;
+    height: 20px;
+    font-weight: bold;
+    font-size: 9px;
+    position: absolute;
+    bottom: 2rem;
+    left: -2rem;
 }
 
 .crossed {
@@ -566,6 +560,7 @@ header {
 
 .product-sizes-container p {
     cursor: pointer;
+    margin-top: 1rem;
 }
 
 #packaging, #payment {
