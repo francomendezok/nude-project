@@ -623,3 +623,15 @@ header {
 .bottom-banner:hover {
     color: transparent;
 }
+
+.cart-hidden {
+    border: 4px solid red;
+    position: fixed;
+    bottom: 0rem;
+    top: 6rem;
+    left: 60rem;
+    width: 50vw;
+    height: 100vh;
+    display: none;
+    background-color: whitesmoke;
+}

@@ -3,6 +3,7 @@
 import nude from '../api/nude.json';
 import { useState } from 'react';
 import ProductArrows from '../home/ProductArrows';
+import Cart from '../cart/Cart.jsx';
 
 
 
@@ -28,8 +29,8 @@ function handleQuickAdd (setShowQuickAdd, value, setActive, size) {
     setActive(size)
 }
 
-function QuickAdd ({size, active}) {
-        if (size === active) {
+function QuickAdd ({size, active, cross}) {
+        if (size === active && !cross) {
             return (
                 <div className='quick-add'>
                      QUICK ADD
@@ -45,8 +46,8 @@ function Size ({product, size, value, showQuickAdd, setShowQuickAdd}) {
 
     return (
         <div onMouseEnter={() => handleQuickAdd(setShowQuickAdd, true, setActive, size)} onMouseLeave={() => handleQuickAdd(setShowQuickAdd, false, setActive, '')} className='p-size'>
-            {showQuickAdd ? <QuickAdd size={size} active={active} /> : null}
-            <p onClick={() => alert(`open cart and add to main object. Add ${product.title} size ${size}`)} id={size} className={cross}>{size}</p>
+            {showQuickAdd ? <QuickAdd size={size} active={active} cross={cross} /> : null}
+            <p onClick={() => alert(cross)} id={size} className={cross}>{size}</p>
         </div>
     )
 }
@@ -109,6 +110,7 @@ let products = getProducts(shirtsIds)
 
     return (
         <div className='images-container'>
+            <Cart />
             <Shirt product={products[0]} length={3} /> 
             <Shirt product={products[1]} length={4} /> 
             <Shirt product={products[2]} length={7} /> 
