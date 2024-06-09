@@ -1,11 +1,23 @@
 import { Link, Outlet } from "react-router-dom"
 import Logo from "./home/Logo.jsx"
+import { useState } from "react"
 
 
 export default function Root () {
+    const [root, setRootClass] = useState('root-background')
+    const [showCart, setShowCart] = useState(false)
+    const [cart, setCart] = useState({})
 
+    const contextValue = {
+        root,
+        setRootClass,
+        showCart,
+        setShowCart,
+        cart,
+        setCart
+    };
     return (
-        <div id="root">
+        <div id="root"  className={root}>
             <header>
                 <nav className="navbar">
                     <div className="links">
@@ -26,7 +38,7 @@ export default function Root () {
                 </nav>
                 <div className="free-shipping">FREE SHIPPING: NATIONAL OVER 100€ | INTERNATIONAL OVER 200€</div>
             </header>
-            <Outlet />
+            <Outlet context={contextValue}/>
             <footer id="footer">
                 <div id="footer-root">
                     <div className="footer-divs nude-icons">

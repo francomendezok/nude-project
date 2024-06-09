@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useOutletContext, Link } from 'react-router-dom';
 import banner1 from '../images/banner1.webp';
 import banner2 from '../images/banner2.webp';
 import banner3 from '../images/banner3.webp';
@@ -28,6 +28,7 @@ import TrustpilotWidget from './TrustAdvisor.jsx';
 import '../styles/index.css';
 import '../styles/reset.css';
 import Arrows from './Arrows.jsx';
+import Cart from '../cart/Cart.jsx';
 
 const quotes = [
     "SOONER OR LATER YOU WILL BE HEARING <br>ABOUT NUDE PROJECT",
@@ -361,6 +362,9 @@ const loadImage = (url) => {
 
 export default function Home() {
     const [isLoading, setIsLoading] = useState(true);
+    const { showCart, setShowCart, cart, setCart } = useOutletContext();
+
+
     let shirtsIds = [
         8858950107460,
         8915764740420,
@@ -432,14 +436,15 @@ export default function Home() {
     }
 
     return (
-        <div>
+        <div className='home'>
+            {showCart ? <Cart/> : null}
             <Slideshow />
             <section className="new-arrivals-home">
                 <div className='flex items-center w-full pl-6 pr-6 pt-4 -mb-10 justify-between'>
                     <h2 className="text-xl font-bold">NEW ARRIVALS</h2>
                     <Link className="underline text-xl text-slate-950" to="">VIEW ALL</Link>
                 </div>
-                <Tshirts shirtsIds={shirtsIds} />
+                <Tshirts shirtsIds={shirtsIds} setShowCart={setShowCart} />
                 <ClothesSection />
                 <Trousers trousersIds={trousersIds}/>
                 <OurStores />

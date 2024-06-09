@@ -29,6 +29,7 @@ function handleQuickAdd (setShowQuickAdd, value, setActive, size) {
     setActive(size)
 }
 
+
 function QuickAdd ({size, active, cross}) {
         if (size === active && !cross) {
             return (
@@ -40,14 +41,18 @@ function QuickAdd ({size, active, cross}) {
     
 }
 
-function Size ({product, size, value, showQuickAdd, setShowQuickAdd}) {
+function handleCart (setShowCart) {
+    setShowCart(true)
+}
+
+function Size ({product, size, value, showQuickAdd, setShowQuickAdd, setShowCart}) {
     const cross = product.options[0].values[value] == null ? "crossed" : '';
     const [active, setActive] = useState('')
 
     return (
         <div onMouseEnter={() => handleQuickAdd(setShowQuickAdd, true, setActive, size)} onMouseLeave={() => handleQuickAdd(setShowQuickAdd, false, setActive, '')} className='p-size'>
             {showQuickAdd ? <QuickAdd size={size} active={active} cross={cross} /> : null}
-            <p onClick={() => alert(cross)} id={size} className={cross}>{size}</p>
+            <p onClick={() => handleCart(setShowCart)} id={size} className={cross}>{size}</p>
         </div>
     )
 }
@@ -55,14 +60,13 @@ function Size ({product, size, value, showQuickAdd, setShowQuickAdd}) {
 
 
 
-function Shirt ({product, color, length}) {
+function Shirt ({product, color, length, setShowCart}) {
     const [showArrows, setShowArrows] = useState(false)
     const [position, setPosition] = useState(0)
     const [image, setImage] = useState(product.id)
     const [showSizes, setShowSize] = useState(false)
     const [hideInfo, setHideInfo] = useState(false)
     const [showQuickAdd, setShowQuickAdd] = useState(false)
-    const [showCart, setShowCart] = useState(false)
 
     return (
         <div onMouseEnter={() => handleMouseEnter(product, position, setPosition, 1, setShowSize, setHideInfo, setShowArrows)} onMouseLeave={() => handleMouseLeave(product, position, setPosition, 0, setShowSize, setHideInfo, setShowArrows)} className='product-home-box'>
@@ -76,12 +80,12 @@ function Shirt ({product, color, length}) {
             </div>
             <div className={showSizes ? "product-sizes-container" : "hidden"}>
                     {/* P should be a component that changes state to show QuickAdd*/}
-                <Size product={product} size={"XS"} value={0} showQuickAdd={showQuickAdd} setShowQuickAdd={setShowQuickAdd} />
-                <Size product={product} size={"S"} value={1} showQuickAdd={showQuickAdd} setShowQuickAdd={setShowQuickAdd} />
-                <Size product={product} size={"M"} value={2} showQuickAdd={showQuickAdd} setShowQuickAdd={setShowQuickAdd} />
-                <Size product={product} size={"L"} value={3} showQuickAdd={showQuickAdd} setShowQuickAdd={setShowQuickAdd} />
-                <Size product={product} size={"XL"} value={4} showQuickAdd={showQuickAdd} setShowQuickAdd={setShowQuickAdd} />
-                <Size product={product} size={"XXL"} value={5} showQuickAdd={showQuickAdd} setShowQuickAdd={setShowQuickAdd} />
+                <Size product={product} size={"XS"} value={0} showQuickAdd={showQuickAdd} setShowQuickAdd={setShowQuickAdd} setShowCart={setShowCart} />
+                <Size product={product} size={"S"} value={1} showQuickAdd={showQuickAdd} setShowQuickAdd={setShowQuickAdd} setShowCart={setShowCart} />
+                <Size product={product} size={"M"} value={2} showQuickAdd={showQuickAdd} setShowQuickAdd={setShowQuickAdd} setShowCart={setShowCart} />
+                <Size product={product} size={"L"} value={3} showQuickAdd={showQuickAdd} setShowQuickAdd={setShowQuickAdd} setShowCart={setShowCart} />
+                <Size product={product} size={"XL"} value={4} showQuickAdd={showQuickAdd} setShowQuickAdd={setShowQuickAdd} setShowCart={setShowCart} />
+                <Size product={product} size={"XXL"} value={5} showQuickAdd={showQuickAdd} setShowQuickAdd={setShowQuickAdd} setShowCart={setShowCart} />
             </div>
     </div>
     )
@@ -94,7 +98,7 @@ function ImageComponent ({folder, number}) {
   }
 
 
-export default function Tshirts ({shirtsIds}) {
+export default function Tshirts ({shirtsIds, setShowCart}) {
     
 function getProducts (ids) {
     let myProducts = []
@@ -110,23 +114,22 @@ let products = getProducts(shirtsIds)
 
     return (
         <div className='images-container'>
-            <Cart />
-            <Shirt product={products[0]} length={3} /> 
-            <Shirt product={products[1]} length={4} /> 
-            <Shirt product={products[2]} length={7} /> 
-            <Shirt product={products[3]} length={5} /> 
-            <Shirt product={products[4]} length={5} /> 
-            <Shirt product={products[5]} length={4} /> 
-            <Shirt product={products[6]} length={2} /> 
-            <Shirt product={products[7]} length={2} /> 
-            <Shirt product={products[8]} length={3} /> 
-            <Shirt product={products[9]} length={5} /> 
-            <Shirt product={products[10]} length={8} /> 
-            <Shirt product={products[11]} length={8} /> 
-            <Shirt product={products[12]} length={6} color={'#0a0d0d'} /> 
-            <Shirt product={products[13]} length={5} /> 
-            <Shirt product={products[14]} length={4} /> 
-            <Shirt product={products[15]} length={4} />             
+            <Shirt product={products[0]} length={3} setShowCart={setShowCart} /> 
+            <Shirt product={products[1]} length={4} setShowCart={setShowCart} /> 
+            <Shirt product={products[2]} length={7} setShowCart={setShowCart} /> 
+            <Shirt product={products[3]} length={5} setShowCart={setShowCart} /> 
+            <Shirt product={products[4]} length={5} setShowCart={setShowCart} /> 
+            <Shirt product={products[5]} length={4} setShowCart={setShowCart} /> 
+            <Shirt product={products[6]} length={2} setShowCart={setShowCart} /> 
+            <Shirt product={products[7]} length={2} setShowCart={setShowCart} /> 
+            <Shirt product={products[8]} length={3} setShowCart={setShowCart} /> 
+            <Shirt product={products[9]} length={5} setShowCart={setShowCart} /> 
+            <Shirt product={products[10]} length={8} setShowCart={setShowCart} /> 
+            <Shirt product={products[11]} length={8} setShowCart={setShowCart} /> 
+            <Shirt product={products[12]} length={6} color={'#0a0d0d'} setShowCart={setShowCart} /> 
+            <Shirt product={products[13]} length={5} setShowCart={setShowCart} /> 
+            <Shirt product={products[14]} length={4} setShowCart={setShowCart} /> 
+            <Shirt product={products[15]} length={4} setShowCart={setShowCart} />             
         </div>
     )
 }
