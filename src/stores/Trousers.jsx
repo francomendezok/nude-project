@@ -71,7 +71,7 @@ function ImageComponent ({folder, number}) {
     )
   }
 
-  export default function Trousers ({trousersIds}) {
+  export default function Trousers ({trousersIds, showCart, setShowCart, cart, setCart}) {
     function getProducts (ids) {
         let myProducts = []
         for (let i = 0; i < nude.length; i++) {

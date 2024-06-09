@@ -1,15 +1,23 @@
 import { Link, Outlet } from "react-router-dom"
 import Logo from "./home/Logo.jsx"
 import { useState } from "react"
+import logo from './images/nude.png'
 
+function Loading () {
+    return (
+        <div>
+            <img className='loading' src={logo} alt="Loading..." />;
+        </div>
+    )
+}
 
 export default function Root () {
-    const [root, setRootClass] = useState('root-background')
+    const [rootClass, setRootClass] = useState('')
     const [showCart, setShowCart] = useState(false)
-    const [cart, setCart] = useState({})
+    const [cart, setCart] = useState([])
 
     const contextValue = {
-        root,
+        rootClass,
         setRootClass,
         showCart,
         setShowCart,
@@ -17,7 +25,8 @@ export default function Root () {
         setCart
     };
     return (
-        <div id="root"  className={root}>
+        rootClass === 'hidden' ? <Loading/> :
+        <div id="root"  className={rootClass}>
             <header>
                 <nav className="navbar">
                     <div className="links">
@@ -94,6 +103,5 @@ export default function Root () {
                 </div>
             </footer>
         </div>
-
     )
 }

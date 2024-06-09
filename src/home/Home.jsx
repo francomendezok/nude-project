@@ -5,7 +5,6 @@ import banner2 from '../images/banner2.webp';
 import banner3 from '../images/banner3.webp';
 import nude from '../api/nude.json';
 import stores from '../api/stores.json';
-import logo from '../images/nude.png'
 import photo1 from '../images/1.webp';
 import photo2 from '../images/2.webp';
 import photo3 from '../images/3.webp';
@@ -362,7 +361,7 @@ const loadImage = (url) => {
 
 export default function Home() {
     const [isLoading, setIsLoading] = useState(true);
-    const { showCart, setShowCart, cart, setCart } = useOutletContext();
+    const { rootClass, setRootClass, showCart, setShowCart, cart, setCart } = useOutletContext();
 
 
     let shirtsIds = [
@@ -428,13 +427,10 @@ export default function Home() {
     });
 
     if (isLoading) {
-        return (
-            <div className='loading-container'>
-                <img className='loading' src={logo} alt="Loading..." />;
-            </div>
-        )
+        setRootClass('hidden')
     }
 
+    setRootClass('')
     return (
         <div className='home'>
             {showCart ? <Cart/> : null}
@@ -444,9 +440,9 @@ export default function Home() {
                     <h2 className="text-xl font-bold">NEW ARRIVALS</h2>
                     <Link className="underline text-xl text-slate-950" to="">VIEW ALL</Link>
                 </div>
-                <Tshirts shirtsIds={shirtsIds} setShowCart={setShowCart} />
+                <Tshirts shirtsIds={shirtsIds} showCart={showCart} setShowCart={setShowCart} cart={cart} setCart={setCart} />
                 <ClothesSection />
-                <Trousers trousersIds={trousersIds}/>
+                <Trousers trousersIds={trousersIds} showCart={showCart} setShowCart={setShowCart} cart={cart} setCart={setCart} />
                 <OurStores />
                 <PhotosOfCollections />
                 <div className='trust-info-container'>
