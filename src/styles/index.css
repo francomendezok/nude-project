@@ -416,6 +416,18 @@ header {
     transform-style: preserve-3d;
 }
 
+.header-hidden {
+    transform: translateY(-100%);
+    transition: transform 0.5s ease-in-out;
+}
+
+
+
+.header-visible {
+    transform: translateY(0);
+    transition: transform 0.5s ease-in-out;
+}
+
 
 
 #store {
@@ -633,7 +645,21 @@ header {
     background-color: whitesmoke;
     z-index: 9999;
 }
+.opacity-background {
+    position: fixed;
+    width: 100vw;
+    height: 200vh;
+    background-color: #452b1a;
+    opacity: .5;
+    visibility: visible;
+    z-index: 9999;
+}
 
 .root-hidden {
     border: 4px solid orange !important;
 }
+
+.no-scroll {
+    overflow-y: hidden !important;
+}
+

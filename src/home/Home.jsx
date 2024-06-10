@@ -433,7 +433,7 @@ export default function Home() {
     setRootClass('')
     return (
         <div className='home'>
-            {showCart ? <Cart/> : null}
+            {showCart ? <Cart setShowCart={setShowCart} /> : null}
             <Slideshow />
             <section className="new-arrivals-home">
                 <div className='flex items-center w-full pl-6 pr-6 pt-4 -mb-10 justify-between'>
