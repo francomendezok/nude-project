@@ -41,17 +41,20 @@ function QuickAdd ({size, active, cross}) {
     
 }
 
-function handleCart (showCart, setShowCart, cart, setCart, product, size) {
-    setShowCart(!showCart)
-    let myCart = [...cart]
-    myCart.push({
-        product: product.title,
-        size: size,
-        price: 40
-    })
-    setCart(myCart)
-    console.log(cart);
-    console.log(myCart);
+function handleCart (showCart, setShowCart, cart, setCart, product, size, cross) {
+    if (!cross) {
+        setShowCart(!showCart)
+        let myCart = [...cart]
+        console.log(product);
+        myCart.push({
+            product: product.title,
+            size: size,
+            price: 40,
+            id: product.id
+        })
+        setCart(myCart)
+
+    }
 }
 
 function Size ({product, size, value, showQuickAdd, setShowQuickAdd, showCart, setShowCart, cart, setCart}) {
@@ -61,7 +64,7 @@ function Size ({product, size, value, showQuickAdd, setShowQuickAdd, showCart, s
     return (
         <div onMouseEnter={() => handleQuickAdd(setShowQuickAdd, true, setActive, size)} onMouseLeave={() => handleQuickAdd(setShowQuickAdd, false, setActive, '')} className='p-size'>
             {showQuickAdd ? <QuickAdd size={size} active={active} cross={cross} /> : null}
-            <p onClick={() => handleCart(showCart, setShowCart, cart, setCart, product, size)} id={size} className={cross}>{size}</p>
+            <p onClick={() => handleCart(showCart, setShowCart, cart, setCart, product, size, cross)} id={size} className={cross}>{size}</p>
         </div>
     )
 }
@@ -100,9 +103,10 @@ function Shirt ({product, color, length, showCart, setShowCart, cart, setCart}) 
     )
 }
 
-function ImageComponent ({folder, number}) {
+function ImageComponent ({folder, number, inCart}) {
+
     return (
-        <img className='cursor-pointer' src={`/images/Shirts/${folder}/${number}.webp`} alt="Example" /> 
+        <img className={inCart ? 'cart-image' : 'cursor-pointer'} src={`/images/Shirts/${folder}/${number}.webp`} alt="Example" /> 
     )
   }
 
@@ -143,3 +147,4 @@ let products = getProducts(shirtsIds)
     )
 }
 
+export {ImageComponent}
