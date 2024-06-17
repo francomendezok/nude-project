@@ -39,7 +39,7 @@ function CartProducts ({cart, setCart}) {
             return (
                 <div className="product-cart" key={index}>
                     <div className="img-product-card">
-                        <ImageComponent folder={product.id} number={1} inCart={true} />
+                        <ImageComponent folder={product.id} number={1} inCart={true} categorie={product.categorie} />
                     </div>
                     <section className="info-container-card">
                         <div className="info-product-card">

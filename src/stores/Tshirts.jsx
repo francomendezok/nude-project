@@ -22,24 +22,17 @@ function handleMouseLeave (product, position, setPosition, newImage, setShowSize
     setHideInfo(false)
     setShowArrows(false)    
 }
-
 function handleQuickAdd (setShowQuickAdd, value, setActive, size) {
     setShowQuickAdd(value)
     setActive(size)
 }
-
-
 function QuickAdd ({size, active, cross}) {
-        if (size === active && !cross) {
-            return (
-                <div className='quick-add'>
-                     QUICK ADD
-                </div>
-            )
-        }
-    
+    if (size === active && !cross) {
+        return (
+            <div className='quick-add'>QUICK ADD</div>
+        )
+    }
 }
-
 function handleCart (showCart, setShowCart, setCart, product, size, cross) {
     if (!cross) {
         let sameSize = false
@@ -68,7 +61,8 @@ function handleCart (showCart, setShowCart, setCart, product, size, cross) {
                 size: size,
                 price: 40,
                 id: product.id,
-                amount: 1
+                amount: 1,
+                categorie: "Shirts"
             })
         }
 
@@ -103,7 +97,7 @@ function Shirt ({product, color, length, showCart, setShowCart, cart, setCart}) 
     return (
         <div onMouseEnter={() => handleMouseEnter(product, position, setPosition, 1, setShowSize, setHideInfo, setShowArrows)} onMouseLeave={() => handleMouseLeave(product, position, setPosition, 0, setShowSize, setHideInfo, setShowArrows)} className='product-home-box'>
             <p className='new-in'>NEW IN</p>
-            <ImageComponent folder={image} number={position} />
+            <ImageComponent folder={image} number={position} categorie={"Shirts"} />
             {showArrows ? <ProductArrows position={position} setPosition={setPosition} length={length} /> : ''}
             <div className={hideInfo ? 'hidden' : 'product-info'}>
                 <p className='product-title'>{product.title}</p>
@@ -111,7 +105,6 @@ function Shirt ({product, color, length, showCart, setShowCart, cart, setCart}) 
                 <div style={{backgroundColor: color ? color : product.options[1].values[0]}} className='clothes-colors'> </div>
             </div>
             <div className={showSizes ? "product-sizes-container" : "hidden"}>
-                    {/* P should be a component that changes state to show QuickAdd*/}
                 <Size product={product} size={"XS"} value={0} showQuickAdd={showQuickAdd} setShowQuickAdd={setShowQuickAdd} showCart={showCart} setShowCart={setShowCart} cart={cart} setCart={setCart} />
                 <Size product={product} size={"S"} value={1} showQuickAdd={showQuickAdd} setShowQuickAdd={setShowQuickAdd} showCart={showCart} setShowCart={setShowCart} cart={cart} setCart={setCart} />
                 <Size product={product} size={"M"} value={2} showQuickAdd={showQuickAdd} setShowQuickAdd={setShowQuickAdd} showCart={showCart} setShowCart={setShowCart} cart={cart} setCart={setCart} />
@@ -123,27 +116,26 @@ function Shirt ({product, color, length, showCart, setShowCart, cart, setCart}) 
     )
 }
 
-function ImageComponent ({folder, number, inCart}) {
-
+function ImageComponent ({folder, number, inCart, categorie}) {
     return (
-        <img className={inCart ? 'cart-image' : 'cursor-pointer'} src={`/images/Shirts/${folder}/${number}.webp`} alt="Example" /> 
+        <img className={inCart ? 'cart-image' : 'cursor-pointer'} src={`/images/${categorie}/${folder}/${number}.webp`} alt="Example" /> 
     )
-  }
+}
 
 
 export default function Tshirts ({shirtsIds, showCart, setShowCart, cart, setCart}) {
     
-function getProducts (ids) {
-    let myProducts = []
-    for (let i = 0; i < nude.length; i++) {
-            if (ids.includes(nude[i].id)) {
-                myProducts.push(nude[i])
-            }   
+    function getProducts (ids) {
+        let myProducts = []
+        for (let i = 0; i < nude.length; i++) {
+                if (ids.includes(nude[i].id)) {
+                    myProducts.push(nude[i])
+                }   
+        }
+        return myProducts
     }
-    return myProducts
-}
 
-let products = getProducts(shirtsIds)
+    let products = getProducts(shirtsIds)
 
     return (
         <div className='images-container'>
