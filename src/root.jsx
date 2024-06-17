@@ -11,10 +11,27 @@ function Loading () {
     )
 }
 
+function generateCart() {
+    if (localStorage.getItem("cart")) {
+        let cartJSON = localStorage.getItem("cart");
+        let cart = JSON.parse(cartJSON);
+
+        return cart;
+    } else {
+        let cart = [];
+        let cartJSON = JSON.stringify(cart);
+
+
+        localStorage.setItem("cart", cartJSON);
+        return cart;
+    }
+}
+
+
 export default function Root() {
     const [rootClass, setRootClass] = useState('');
     const [showCart, setShowCart] = useState(false);
-    const [cart, setCart] = useState([]);
+    const [cart, setCart] = useState(generateCart());
     const [headerClass, setHeaderClass] = useState('header-visible');
 
     useEffect(() => {

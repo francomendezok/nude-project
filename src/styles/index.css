@@ -742,3 +742,12 @@ header {
     color: #452b1a;
     font-weight: 600;
 }
+
+.empty-cart {
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 60%;
+    width: 80%;
+    font-size: 18px;
+    font-weight: 700;
+}

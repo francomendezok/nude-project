@@ -3,7 +3,6 @@
 import nude from '../api/nude.json';
 import { useState } from 'react';
 import ProductArrows from '../home/ProductArrows';
-import Cart from '../cart/Cart.jsx';
 
 
 
@@ -41,19 +40,40 @@ function QuickAdd ({size, active, cross}) {
     
 }
 
-function handleCart (showCart, setShowCart, cart, setCart, product, size, cross) {
+function handleCart (showCart, setShowCart, setCart, product, size, cross) {
     if (!cross) {
-        setShowCart(!showCart)
-        let myCart = [...cart]
-        console.log(product);
-        myCart.push({
-            product: product.title,
-            size: size,
-            price: 40,
-            id: product.id
-        })
-        setCart(myCart)
+        let sameSize = false
+        let index;
 
+        setShowCart(!showCart)
+        let cartJSON = localStorage.getItem("cart");
+
+        let dataCart = JSON.parse(cartJSON);
+
+        for (let i = 0; i < dataCart.length; i++) {
+            if (dataCart[i].id === product.id && dataCart[i].size === size) {
+                sameSize = true
+                index = i
+                break;
+            }  
+        }
+
+        if (sameSize) {
+            dataCart[index].amount++;
+        }
+
+        else {
+            dataCart.push({
+                product: product.title,
+                size: size,
+                price: 40,
+                id: product.id,
+                amount: 1
+            })
+        }
+
+        setCart(dataCart)
+        localStorage.setItem("cart", JSON.stringify(dataCart));
     }
 }
 
@@ -64,7 +84,7 @@ function Size ({product, size, value, showQuickAdd, setShowQuickAdd, showCart, s
     return (
         <div onMouseEnter={() => handleQuickAdd(setShowQuickAdd, true, setActive, size)} onMouseLeave={() => handleQuickAdd(setShowQuickAdd, false, setActive, '')} className='p-size'>
             {showQuickAdd ? <QuickAdd size={size} active={active} cross={cross} /> : null}
-            <p onClick={() => handleCart(showCart, setShowCart, cart, setCart, product, size, cross)} id={size} className={cross}>{size}</p>
+            <p onClick={() => handleCart(showCart, setShowCart, setCart, product, size, cross)} id={size} className={cross}>{size}</p>
         </div>
     )
 }
