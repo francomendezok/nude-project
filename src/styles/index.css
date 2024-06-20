@@ -635,7 +635,7 @@ header {
 }
 
 .cart-hidden {
-    border-left: 2px solid black;
+    border-left: 1px solid black;
     display: flex;
     flex-direction: column;
     position: fixed;
@@ -738,7 +738,6 @@ header {
 
 .products-card-container {
     height: 65vh;
-    overflow-y: scroll;
     color: #452b1a;
     font-weight: 600;
 }
@@ -750,4 +749,52 @@ header {
     width: 80%;
     font-size: 18px;
     font-weight: 700;
+}
+
+.checkout-shipping-container {
+    height: 30vh;
+}
+
+.info-shipping {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.info-shipping p {
+    margin: 1rem;
+    font-size: 12px;
+}
+
+.subtotal-box {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: .3rem;
+}
+
+.subtotal-box p {
+    padding: 0.4rem;
+}
+
+.checkout-button-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.checkout-button-box button {
+    background-color: #452b1a;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    width: 95%;
+    padding: .8rem;
+    cursor: pointer;
+}
+
+.checkout-button-box p {
+    color: grey;
+    font-size: 10px;
+    margin-top: 1rem;
 }

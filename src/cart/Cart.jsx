@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { useState } from "react";
 import { ImageComponent } from "../stores/Tshirts";
 
 function handleCart(setShowCart) {
@@ -33,39 +34,113 @@ function EmptyCart () {
     )
 }
 
+function handlePlusLessProduct(product, side, setCart, setAmount) {
+    let cart = getCart()
+    let myCart = [...cart]
+    
+    const index = myCart.findIndex(cartItem => cartItem.id === product.id);
+
+    if (side === "left") {
+        if (product.amount > 1) {
+            myCart[index].amount--
+            setAmount(myCart[index].amount)
+        }
+        else {
+            myCart.splice(index,1)
+        }
+    } 
+
+    else if (side === "right") {
+        myCart[index].amount++
+        setAmount(myCart[index].amount)
+    }
+
+    setCart(myCart)
+    localStorage.setItem("cart", JSON.stringify(myCart));
+}
+
+function ProductCart ({product, index, setCart}) {
+    const [amount, setAmount] = useState(product.amount)
+    return (
+        <div className="product-cart" key={index}>
+            <div className="img-product-card">
+                <ImageComponent folder={product.id} number={1} inCart={true} categorie={product.categorie} />
+            </div>
+            <section className="info-container-card">
+                <div className="info-product-card">
+                    <div>{product.product}</div>
+                    <div>€{product.price}</div>
+                    <div>{product.size}</div>
+                </div>
+                <div className="buttons-product-card">
+                    <div className="plus-less-card">
+                        <svg onClick={() => handlePlusLessProduct(product, "left", setCart, setAmount)} width={"10px"} className="Icon Icon--minus" role="presentation" viewBox="0 0 16 2">
+<path d="M1,1 L15,1" stroke="currentColor" fill="none" fillRule="evenodd" strokeLinecap="square"></path>
+                        </svg>
+                        <p>{amount}</p>
+                        <svg onClick={() => handlePlusLessProduct(product, "right", setCart, setAmount)} width={"10px"} className="Icon Icon--plus" role="presentation" viewBox="0 0 16 16">
+<g stroke="currentColor" fill="none" fillRule="evenodd" strokeLinecap="square">
+<path d="M8,1 L8,15"></path>
+<path d="M1,8 L15,8"></path>
+</g>
+                        </svg>
+                    </div>
+                    <h2 className="cursor-pointer" onClick={() => remove(setCart, product)}>REMOVE</h2>
+                </div>
+            </section>
+        </div>
+    )
+}
+
 function CartProducts ({cart, setCart}) {
     return (
         cart.map((product, index) => {
             return (
-                <div className="product-cart" key={index}>
-                    <div className="img-product-card">
-                        <ImageComponent folder={product.id} number={1} inCart={true} categorie={product.categorie} />
-                    </div>
-                    <section className="info-container-card">
-                        <div className="info-product-card">
-                            <div>{product.product}</div>
-                            <div>€{product.price}</div>
-                            <div>{product.size}</div>
-                        </div>
-                        <div className="buttons-product-card">
-                            <div className="plus-less-card">
-                                <svg width={"10px"} className="Icon Icon--minus" role="presentation" viewBox="0 0 16 2">
-<path d="M1,1 L15,1" stroke="currentColor" fill="none" fillRule="evenodd" strokeLinecap="square"></path>
-                                </svg>
-                                <p>{product.amount}</p>
-                                <svg width={"10px"} className="Icon Icon--plus" role="presentation" viewBox="0 0 16 16">
-<g stroke="currentColor" fill="none" fillRule="evenodd" strokeLinecap="square">
-    <path d="M8,1 L8,15"></path>
-    <path d="M1,8 L15,8"></path>
-</g>
-                                </svg>
-                            </div>
-                            <h2 className="cursor-pointer" onClick={() => remove(setCart, product)}>REMOVE</h2>
-                        </div>
-                    </section>
-                </div>
+                <ProductCart product={product} key={index} setCart={setCart} />
             );
         })
+    )
+}
+
+function ShippingCost ({cart}) {
+        if (cart.reduce((total, item) => total + item.price * item.amount, 0) >= 200) {
+            return (
+                <p>You are eligible for free shipping!</p>
+            )
+        }
+        else {
+            return (
+                <div>
+                    <p>SPAIN: {cart.reduce((total, item) => total + item.price * item.amount, 0) >= 100 ? "You are eligible for free shipping!" : `Spend €${100 - cart.reduce((total, item) => total + item.price * item.amount, 0)} more and get free shipping`} </p>
+                    <p>INTERNATIONAL: {cart.reduce((total, item) => total + item.price * item.amount, 0) >= 200 ? "You are eligible for free shipping!" : `Spend €${200 - cart.reduce((total, item) => total + item.price * item.amount, 0)} more and get free shipping`} </p>
+                </div>
+            )
+        }
+}
+
+function ShippingContainer ({cart}) {
+    return (
+        <div className="checkout-shipping-container">
+                    <div className="info-shipping">
+                        <ShippingCost cart={cart} />    
+                    </div>
+                    <div className="info-checkout">
+                        <div className="subtotal-box">
+                            <div>
+                                <p>CART</p>
+                                <p>{cart.reduce((total, item) => total + item.amount, 0)} Items</p>
+                            </div>
+                            <div>
+                                <p>SUBTOTAL</p>
+                                <p className="text-xl font-bold">€{cart.reduce((total, item) => total + item.price * item.amount, 0)}</p>
+                            </div>
+                        </div>
+                        <div className="checkout-button-box">
+                            <button>CHECKOUT</button>
+                            <p>Shipping & taxes calculated at checkout</p>
+                        </div>
+                    </div>
+                </div>
     )
 }
 
@@ -83,9 +158,10 @@ export default function Cart ({setShowCart, cart, setCart}) {
 </svg>
 
                 </div>
-                <div className="products-card-container">
+                <div className={`products-card-container ${cart.length > 2 ? 'overflow-y-scroll' : ''}`}>
                     {cart.length ? <CartProducts cart={cart} setCart={setCart} /> : <EmptyCart />}
                 </div>
+                    {cart.length ? <ShippingContainer cart={cart} /> : ''}
             </div>
         </div>
     )
