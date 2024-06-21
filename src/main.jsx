@@ -6,6 +6,7 @@ import Root from './root';
 import Home from './home/Home';
 import Collections from './collections/Collections';
 import Cart from './cart/Cart';
+import Checkout from './cart/Checkout';
 import About from './about/About';
 import NewArrivals from './collections/NewArrivals'
 import BestSellers from './collections/BestSellers'
@@ -32,6 +33,9 @@ const router = createBrowserRouter([
       },
     ]
   },
+  { path: "checkout",
+    element: <Checkout />
+  }
 
 ]);
 

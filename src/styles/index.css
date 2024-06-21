@@ -783,13 +783,21 @@ header {
     align-items: center;
 }
 
-.checkout-button-box button {
+#btn-to-checkout {
     background-color: #452b1a;
+    border: 1px solid #452b1a;
     color: white;
     font-size: 15px;
     font-weight: bold;
     width: 95%;
     padding: .8rem;
+    cursor: pointer;
+    text-align: center;
+}
+#btn-to-checkout:hover {
+    background-color: white;
+    color: #452b1a;
+    border: 1px solid black;
     cursor: pointer;
 }
 
@@ -797,4 +805,25 @@ header {
     color: grey;
     font-size: 10px;
     margin-top: 1rem;
+}
+
+/* CHECKOUT ROUTE */
+
+#checkout-main {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    border: 1px solid green;
+    overflow: hidden;
+    height: 100vh;
+}
+
+#fill-info-checkout {
+    border: 2px solid red;
+    display: flex;
+    flex-direction: column;
+}
+
+#brief-cart-checkout {
+    background-color: #452b1a;
+    color: white;
 }

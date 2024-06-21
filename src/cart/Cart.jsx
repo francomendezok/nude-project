@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ImageComponent } from "../stores/Tshirts";
+import { Link } from "react-router-dom";
 
 function handleCart(setShowCart) {
     document.documentElement.classList.remove('no-scroll'); // document.documentElement refers to the <html> element
@@ -14,17 +15,14 @@ function getCart () {
         return cart;
 }
 
-function remove (setCart, product) {
+function remove (setCart, product, amount, setAmount) {
     let cart = getCart()
     let myCart = [...cart]
-    console.log(myCart);
 
-    for (let i = 0; i < cart.length; i++) {
-        if (cart[i].id === product.id) {
-            myCart.splice(i, 1);
-            break;
-        }        
-    }
+    myCart = myCart.filter(myCartProduct => myCartProduct.id !== product.id)
+
+    myCart.map(item => setAmount(item.amount))
+
     setCart(myCart)
     localStorage.setItem("cart", JSON.stringify(myCart));
 }
@@ -86,21 +84,25 @@ function ProductCart ({product, index, setCart}) {
 </g>
                         </svg>
                     </div>
-                    <h2 className="cursor-pointer" onClick={() => remove(setCart, product)}>REMOVE</h2>
+                    <h2 className="cursor-pointer" onClick={() => remove(setCart, product, amount, setAmount)}>REMOVE</h2>
                 </div>
             </section>
         </div>
     )
 }
 
-function CartProducts ({cart, setCart}) {
+function CartProducts({ cart, setCart }) {
+    const [updatedCart, setUpdatedCart] = useState(cart);
+
+    useEffect(() => {
+        setUpdatedCart(cart);
+    }, [cart]);
+
     return (
-        cart.map((product, index) => {
-            return (
-                <ProductCart product={product} key={index} setCart={setCart} />
-            );
-        })
-    )
+        updatedCart.map((product, index) => (
+            <ProductCart product={product} key={index} setCart={setCart} />
+        ))
+    );
 }
 
 function ShippingCost ({cart}) {
@@ -137,7 +139,9 @@ function ShippingContainer ({cart}) {
                             </div>
                         </div>
                         <div className="checkout-button-box">
-                            <button>CHECKOUT</button>
+                            <Link to="checkout" id="btn-to-checkout">
+                                CHECKOUT
+                            </Link>
                             <p>Shipping & taxes calculated at checkout</p>
                         </div>
                     </div>
