@@ -17,6 +17,7 @@ function getCart () {
 function remove (setCart, product) {
     let cart = getCart()
     let myCart = [...cart]
+    console.log(myCart);
 
     for (let i = 0; i < cart.length; i++) {
         if (cart[i].id === product.id) {
@@ -43,11 +44,11 @@ function handlePlusLessProduct(product, side, setCart, setAmount) {
     if (side === "left") {
         if (product.amount > 1) {
             myCart[index].amount--
-            setAmount(myCart[index].amount)
         }
         else {
             myCart.splice(index,1)
         }
+        setAmount(myCart[index].amount)
     } 
 
     else if (side === "right") {
@@ -64,7 +65,7 @@ function ProductCart ({product, index, setCart}) {
     return (
         <div className="product-cart" key={index}>
             <div className="img-product-card">
-                <ImageComponent folder={product.id} number={1} inCart={true} categorie={product.categorie} />
+                <ImageComponent folder={product.id} number={0} inCart={true} categorie={product.categorie} />
             </div>
             <section className="info-container-card">
                 <div className="info-product-card">

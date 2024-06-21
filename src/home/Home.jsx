@@ -343,7 +343,6 @@ function Slideshow() {
         </div>
     );
 }
-console.log(nude)
 
 const loadImage = (url) => {
     return new Promise((resolve, reject) => {
@@ -361,7 +360,7 @@ const loadImage = (url) => {
 
 export default function Home() {
     const [isLoading, setIsLoading] = useState(true);
-    const { rootClass, setRootClass, showCart, setShowCart, cart, setCart } = useOutletContext();
+    const { setRootClass, showCart, setShowCart, cart, setCart } = useOutletContext();
 
 
     let shirtsIds = [

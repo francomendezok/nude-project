@@ -34,6 +34,7 @@ function QuickAdd ({size, active, cross}) {
     }
 }
 function handleCart (showCart, setShowCart, setCart, product, size, cross) {
+    console.log(product.variants[0].price);
     if (!cross) {
         let sameSize = false
         let index;
@@ -59,7 +60,7 @@ function handleCart (showCart, setShowCart, setCart, product, size, cross) {
             dataCart.push({
                 product: product.title,
                 size: size,
-                price: 40,
+                price: product.variants[0].price,
                 id: product.id,
                 amount: 1,
                 categorie: "Shirts"

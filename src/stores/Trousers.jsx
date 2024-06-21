@@ -59,7 +59,7 @@ if (!cross) {
         dataCart.push({
             product: product.title,
             size: size,
-            price: 40,
+            price: product.variants[0].price,
             id: product.id,
             amount: 1,
             categorie: "Trousers"
