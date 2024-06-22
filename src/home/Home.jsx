@@ -3,7 +3,6 @@ import { useOutletContext, Link } from 'react-router-dom';
 import banner1 from '../images/banner1.webp';
 import banner2 from '../images/banner2.webp';
 import banner3 from '../images/banner3.webp';
-import nude from '../api/nude.json';
 import stores from '../api/stores.json';
 import photo1 from '../images/1.webp';
 import photo2 from '../images/2.webp';
@@ -28,13 +27,21 @@ import '../styles/index.css';
 import '../styles/reset.css';
 import Arrows from './Arrows.jsx';
 import Cart from '../cart/Cart.jsx';
+import logo from '../images/nude.png';
+
+function Loading() {
+    return (
+        <div id='loading-box'>
+            <img className='loading' src={logo} alt="Loading..." />
+        </div>
+    );
+}
 
 const quotes = [
     "SOONER OR LATER YOU WILL BE HEARING <br>ABOUT NUDE PROJECT",
     "THE FASTEST GROWING STREETWEAR BRAND <br>IN SPAIN",
     "THE BRAND THAT SELLS A HOODIE EVERY 20 <br>SECONDS"
 ]
-
 
 function Quotes () {
     const [index, setIndex] = useState(0);
@@ -58,7 +65,6 @@ function Quotes () {
         </div>
     );
 }
-
 function Logos () {
     return (
         <div className='logo-container'>
@@ -116,7 +122,6 @@ function PackagingSVG () {
       </svg>
     )
 }
-
 function PaymentSVG () {
     return (
         <svg
@@ -139,8 +144,6 @@ function PaymentSVG () {
   </svg>
     )
 }
-   
-
 function PackagingAndPayment () {
     return (
         <div className='packaging-and-payment-big-box'>
@@ -159,7 +162,6 @@ function PackagingAndPayment () {
         </div>
     )
 }
-
 function ClothesSection() {
     const [images, setImages] = useState([]);
     const clothes = ['HOODIES', "TEES", "ALL PRODUCTS"];
@@ -188,7 +190,6 @@ function ClothesSection() {
         </section>
     );
 }
-
 function OurStores() {
     const [position, setPosition] = useState(0);
 
@@ -253,7 +254,6 @@ function OurStores() {
         </div>
     );
 }
-
 function PhotosOfCollections () {
     return (
         <div id='photos'>
@@ -324,7 +324,6 @@ function PhotosOfCollections () {
         </div>
       );
 }
-
 function Slideshow() {
     const [index, setIndex] = useState(0);
     const images = [banner1, banner2, banner3];
@@ -343,7 +342,6 @@ function Slideshow() {
         </div>
     );
 }
-
 const loadImage = (url) => {
     return new Promise((resolve, reject) => {
         const img = new Image();
@@ -359,9 +357,8 @@ const loadImage = (url) => {
 
 
 export default function Home() {
-    const [isLoading, setIsLoading] = useState(true);
-    const { setRootClass, showCart, setShowCart, cart, setCart } = useOutletContext();
-
+    const { showCart, setShowCart, cart, setCart} = useOutletContext();
+    const [isLoading, setIsLoading] = useState(true)
 
     let shirtsIds = [
         8858950107460,
@@ -421,15 +418,17 @@ export default function Home() {
         ];
 
         Promise.all(imagesToLoad.map(url => loadImage(url)))
-            .then(() => setIsLoading(false))
-            .catch(error => console.error("Error loading images:", error));
+        .then(() => {
+            setTimeout(() => {
+                setIsLoading(false);
+            }, 1500);
+        })            .catch(error => console.error("Error loading images:", error));
     });
 
     if (isLoading) {
-        setRootClass('hidden')
+        return <Loading />
     }
 
-    setRootClass('')
     return (
         <div className='home'>
             {showCart ? <Cart setShowCart={setShowCart} cart={cart} setCart={setCart} /> : null}

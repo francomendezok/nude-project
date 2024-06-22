@@ -405,10 +405,19 @@ header {
     }
 }
 
+#loading-box {
+    height: 100Vh;
+    width: 100vw;
+    position: absolute;
+    z-index: 9999;
+    background-color: #fff;
+    transition: ease-in-out;
+}
+
 .loading {
     position: absolute;
     z-index: 1;
-    top: 50%; 
+    top: 45%; 
     left: 20rem;
     right: 20rem;
     margin: auto;

@@ -1,15 +1,7 @@
-import { Link, Outlet } from "react-router-dom"
-import Logo from "./home/Logo.jsx"
-import { useState, useEffect } from "react"
-import logo from './images/nude.png'
+import { useState, useEffect } from "react";
+import { Link, Outlet } from "react-router-dom";
+import Logo from "./home/Logo.jsx";
 
-function Loading () {
-    return (
-        <div>
-            <img className='loading' src={logo} alt="Loading..." />;
-        </div>
-    )
-}
 
 function generateCart() {
     if (localStorage.getItem("cart")) {
@@ -21,12 +13,10 @@ function generateCart() {
         let cart = [];
         let cartJSON = JSON.stringify(cart);
 
-
         localStorage.setItem("cart", cartJSON);
         return cart;
     }
 }
-
 
 export default function Root() {
     const [rootClass, setRootClass] = useState('');
@@ -55,6 +45,7 @@ export default function Root() {
         };
     }, []);
 
+
     const contextValue = {
         rootClass,
         setRootClass,
@@ -65,7 +56,6 @@ export default function Root() {
     };
 
     return (
-        rootClass === 'hidden' ? <Loading /> :
             <div id="root" className={rootClass}>
                 <header className={headerClass}>
                     <nav className="navbar">
