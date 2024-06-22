@@ -70,7 +70,7 @@ export default function Root() {
                             <p>COUNTRY</p>
                             <p>ENG</p>
                             <p>SEARCH</p>
-                            <p className="cursor-pointer" onClick={() => setShowCart(true)}>CART <span className="cart-parentesis">({cart.length})</span></p>
+                            <p className="cursor-pointer" onClick={() => setShowCart(true)}>CART <span className="cart-parentesis">({cart.reduce((total, item) => total + item.amount, 0)})</span></p>
                         </div>
                     </nav>
                     <div className="free-shipping">FREE SHIPPING: NATIONAL OVER 100€ | INTERNATIONAL OVER 200€</div>

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
-import { ImageComponent } from "../stores/Tshirts";
+import ImageComponent from '../collections/ImageComponent';
 import { Link } from "react-router-dom";
 
 function handleCart(setShowCart) {
@@ -139,7 +139,7 @@ function ShippingContainer ({cart}) {
                             </div>
                         </div>
                         <div className="checkout-button-box">
-                            <Link to="checkout" id="btn-to-checkout">
+                            <Link to="checkout" id="btn-to-checkout" state={{cart}}>
                                 CHECKOUT
                             </Link>
                             <p>Shipping & taxes calculated at checkout</p>
@@ -171,3 +171,5 @@ export default function Cart ({setShowCart, cart, setCart}) {
         </div>
     )
 }
+
+export { getCart }

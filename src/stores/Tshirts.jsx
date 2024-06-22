@@ -3,7 +3,7 @@
 import nude from '../api/nude.json';
 import { useState } from 'react';
 import ProductArrows from '../home/ProductArrows';
-
+import ImageComponent from '../collections/ImageComponent';
 
 
 function handleMouseEnter (product, position, setPosition, newImage, setShowSize, setHideInfo, setShowArrows) {
@@ -34,7 +34,6 @@ function QuickAdd ({size, active, cross}) {
     }
 }
 function handleCart (showCart, setShowCart, setCart, product, size, cross) {
-    console.log(product.variants[0].price);
     if (!cross) {
         let sameSize = false
         let index;
@@ -63,7 +62,8 @@ function handleCart (showCart, setShowCart, setCart, product, size, cross) {
                 price: product.variants[0].price,
                 id: product.id,
                 amount: 1,
-                categorie: "Shirts"
+                categorie: "Shirts",
+                color: product.options[1].values[0] || ''
             })
         }
 
@@ -117,11 +117,6 @@ function Shirt ({product, color, length, showCart, setShowCart, cart, setCart}) 
     )
 }
 
-function ImageComponent ({folder, number, inCart, categorie}) {
-    return (
-        <img className={inCart ? 'cart-image' : 'cursor-pointer'} src={`/images/${categorie}/${folder}/${number}.webp`} alt="Example" /> 
-    )
-}
 
 
 export default function Tshirts ({shirtsIds, showCart, setShowCart, cart, setCart}) {
@@ -160,4 +155,3 @@ export default function Tshirts ({shirtsIds, showCart, setShowCart, cart, setCar
     )
 }
 
-export {ImageComponent}

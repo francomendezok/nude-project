@@ -3,6 +3,7 @@
 import nude from '../api/nude.json';
 import { useState } from 'react';
 import ProductArrows from '../home/ProductArrows';
+import ImageComponent from '../collections/ImageComponent';
 
 
 function handleMouseEnter (product, position, setPosition, newImage, setShowSize, setHideInfo, setShowArrows) {
@@ -62,7 +63,8 @@ if (!cross) {
             price: product.variants[0].price,
             id: product.id,
             amount: 1,
-            categorie: "Trousers"
+            categorie: "Trousers",
+            color: product.options[1].values[0]
         })
     }
 
@@ -112,11 +114,6 @@ function Trouser ({product, color, length, showCart, setShowCart, cart, setCart}
     )
 }
 
-function ImageComponent ({folder, number, inCart, categorie}) {
-    return (
-        <img className={inCart ? 'cart-image' : 'cursor-pointer'} src={`/images/${categorie}/${folder}/${number}.webp`} alt="Example" /> 
-    )
-}
 
 export default function Trousers ({trousersIds, showCart, setShowCart, cart, setCart}) {
     
