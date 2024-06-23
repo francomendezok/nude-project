@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useLocation } from "react-router-dom"
+import { useLocation, useState } from "react-router-dom"
 import { getCart } from "./Cart";
 import ImageComponent from '../collections/ImageComponent';
 
@@ -10,11 +10,11 @@ function ProductsBriefCart ({cart}) {
         cart.map((product, index) => {
             return (
                 <div key={index} className="brief-product">
+                    <div className="bubble-amount">{product.amount}</div>
                     <div className="img-div">
                         <ImageComponent folder={product.id} number={0} inCart={false} categorie={product.categorie} cartBrief={true} />
-                        <div className="bubble-amount">{product.amount}</div>
                     </div>
-                    <div>
+                    <div className="product-brief">
                         <p>{product.product}</p>
                         <p>{product.size} / {product.color}</p>
                     </div>
@@ -31,13 +31,21 @@ export default function Checkout () {
     const location = useLocation()
     const { cart } = location.state || { cart: getCart() };
     const total = cart.reduce((total, item) => total + item.price * item.amount, 0)
+    const [scroll, setScroll] = useState(false)
+
+    function handleScroll () {
+        if (cart.length > 3) {
+            setScroll(true)
+            alert('hover')
+        } 
+    }
 
     return (
         <main id="checkout-main">
             <section id="fill-info-checkout">a</section>
             <section id="brief-cart-checkout">
                 <div className="brief-inner-box">
-                    <div className="cart-brief">
+                    <div onMouseOver={() => handleScroll()} className={`cart-brief ${scroll ? '' : 'no-scroll'}`}>
                         <ProductsBriefCart cart={cart} />
                     </div>
                     <div className="apply-code-brief">
