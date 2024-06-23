@@ -1,11 +1,12 @@
 /* eslint-disable react/prop-types */
-import { useLocation, useState } from "react-router-dom"
+import { useLocation } from "react-router-dom"
+import { useState } from "react";
 import { getCart } from "./Cart";
 import ImageComponent from '../collections/ImageComponent';
+import Logo from "../home/Logo";
 
 
 function ProductsBriefCart ({cart}) {
-    console.log(cart);
     return (
         cart.map((product, index) => {
             return (
@@ -35,17 +36,23 @@ export default function Checkout () {
 
     function handleScroll () {
         if (cart.length > 3) {
-            setScroll(true)
-            alert('hover')
+            setScroll(!scroll)
         } 
     }
 
     return (
         <main id="checkout-main">
-            <section id="fill-info-checkout">a</section>
+            <section id="fill-info-checkout">
+                <div className="info-form-container">
+                    <div className="logo-form">
+                        <Logo location={1} />
+                        <p>Cart {">"} <span className="font-bold">Information</span> {">"} Shipping {">"} Payment</p>
+                    </div>
+                </div>
+            </section>
             <section id="brief-cart-checkout">
                 <div className="brief-inner-box">
-                    <div onMouseOver={() => handleScroll()} className={`cart-brief ${scroll ? '' : 'no-scroll'}`}>
+                    <div onMouseEnter={() => handleScroll()} onMouseLeave={() => handleScroll()} className={`cart-brief ${scroll ? '' : 'no-scroll'}`}>
                         <ProductsBriefCart cart={cart} />
                     </div>
                     <div className="apply-code-brief">
