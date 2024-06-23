@@ -995,5 +995,9 @@ header {
     align-items: center;
     justify-content: space-between;
     margin-top: 6rem;
-    height: 5rem;
+    height: 18rem;
+}
+
+.logo-form img {
+    cursor: pointer;
 }

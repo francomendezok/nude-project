@@ -4,6 +4,7 @@ import { useState } from "react";
 import { getCart } from "./Cart";
 import ImageComponent from '../collections/ImageComponent';
 import Logo from "../home/Logo";
+import expressCheckout from '../images/express-checkout.png'
 
 
 function ProductsBriefCart ({cart}) {
@@ -47,6 +48,12 @@ export default function Checkout () {
                     <div className="logo-form">
                         <Logo location={1} />
                         <p>Cart {">"} <span className="font-bold">Information</span> {">"} Shipping {">"} Payment</p>
+                        <img src={expressCheckout} alt="" />
+                    </div>
+                    <div>
+                    <hr />
+                    OR 
+                    <hr />
                     </div>
                 </div>
             </section>
