@@ -667,9 +667,6 @@ header {
     z-index: 9999;
 }
 
-.root-hidden {
-    border: 4px solid orange !important;
-}
 
 .no-scroll {
     overflow-y: hidden !important;
@@ -821,13 +818,13 @@ header {
 #checkout-main {
     display: grid;
     grid-template-columns: 1.3fr 1fr;
-    overflow: hidden;
-    height: 100vh;
+    height: 170vh !important;
 }
 
 #fill-info-checkout {
     display: flex;
     flex-direction: column;
+    border: 10px solid black;
 }
 
 #brief-cart-checkout {
@@ -842,7 +839,7 @@ header {
 }
 
 .cart-brief {
-    height: 55%;
+    max-height: 55%;
     width: 100%;
     overflow-y: scroll;
 }
@@ -986,7 +983,8 @@ header {
 .info-form-container {
     margin-left: 12rem;
     margin-right: 6rem;
-    height: 100vh;
+    height: 100%;
+    border: 6px solid blue;
 }
 
 .logo-form {
@@ -1000,4 +998,13 @@ header {
 
 .logo-form img {
     cursor: pointer;
+}
+
+#form {
+    border: 3px solid green;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }

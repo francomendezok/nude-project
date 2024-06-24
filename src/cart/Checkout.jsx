@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useLocation } from "react-router-dom"
+import { useLocation, Form } from "react-router-dom"
 import { useState } from "react";
 import { getCart } from "./Cart";
 import ImageComponent from '../collections/ImageComponent';
@@ -50,11 +50,48 @@ export default function Checkout () {
                         <p>Cart {">"} <span className="font-bold">Information</span> {">"} Shipping {">"} Payment</p>
                         <img src={expressCheckout} alt="" />
                     </div>
-                    <div>
-                    <hr />
-                    OR 
-                    <hr />
+                    <div className="flex items-center text-center p-4">
+                        <hr className="flex flex-1"/>
+                        <span className="pl-4 pr-4">OR</span>
+                        <hr className="flex flex-1"/>
                     </div>
+                    <Form method="post" id="form">
+                        <div className="contact-form flex flex-col">
+                            <label htmlFor="contact">Contact</label>
+                            <input type="email" name="email" id="email" placeholder="Email"/>
+                            <div>
+                                <input type="checkbox" name="" id="" />
+                                <label htmlFor="checkbox-email">Email me with news and offers</label>
+                            </div>
+                        </div>
+                        <div className="shipping-form">
+                            <label htmlFor="shipping">Shipping adress</label>
+                            <select name="country" id="select-country" placeholder="Country/region">
+                                <option value="Argentina"></option>
+                            </select>
+                            <input type="text" name="first-name" id="first-name" placeholder="First name" />
+                            <input type="text" name="last-name" id="last-name" placeholder="Last name" />
+                            <input type="text" name="address" id="address" placeholder="Address" />
+                            <input type="text" name="apartment" id="apartment" placeholder="Apartment, suite, etc (optional)" />
+                            <input type="number" name="zip-code" id="zip-code" placeholder="Postal code" />
+                            <input type="text" name="city" id="city" placeholder="city" />
+                            <select name="province" id="province" placeholder="Province">
+                                <option value="cordoba">Cordoba</option>
+                            </select>
+                            <input type="tel" name="phone" id="phone" placeholder="Phone" />
+                            <div>
+                                <input type="checkbox" name="text-offers" id="text-offers" />
+                                <label htmlFor="text-offers">Text me with news and offers</label>
+                            </div>
+                            <div className="to-shipping">
+                                <div className="return-to-cart">
+                                    <p>Return to cart</p>
+                                </div>
+                                <button id="btn-submit" type="submit">Continue to shipping</button>
+                            </div>
+                        </div>
+                    </Form>
+
                 </div>
             </section>
             <section id="brief-cart-checkout">
