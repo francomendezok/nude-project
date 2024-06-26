@@ -48,7 +48,7 @@ export default function Checkout () {
                     <div className="logo-form">
                         <Logo location={1} />
                         <p>Cart {">"} <span className="font-bold">Information</span> {">"} Shipping {">"} Payment</p>
-                        <img src={expressCheckout} alt="" />
+                        <img className="cursor-pointer" src={expressCheckout} alt="" />
                     </div>
                     <div className="flex items-center text-center p-4">
                         <hr className="flex flex-1"/>
@@ -56,10 +56,10 @@ export default function Checkout () {
                         <hr className="flex flex-1"/>
                     </div>
                     <Form method="post" id="form">
-                        <div className="contact-form flex flex-col">
+                        <div className="contact-form">
                             <label htmlFor="contact">Contact</label>
                             <input type="email" name="email" id="email" placeholder="Email"/>
-                            <div>
+                            <div className="email-me-box">
                                 <input type="checkbox" name="" id="" />
                                 <label htmlFor="checkbox-email">Email me with news and offers</label>
                             </div>
@@ -87,11 +87,15 @@ export default function Checkout () {
                                 <div className="return-to-cart">
                                     <p>Return to cart</p>
                                 </div>
-                                <button id="btn-submit" type="submit">Continue to shipping</button>
+                                <button onClick={(e) => e.preventDefault()} id="btn-submit" type="submit">Continue to shipping</button>
                             </div>
                         </div>
                     </Form>
-
+                    <footer id="footer-checkout">
+                        <a className="cursor-pointer" href="#">Refund policy</a>
+                        <a className="cursor-pointer" href="#">Privacy policy</a>
+                        <a className="cursor-pointer" href="#">Terms of service</a>
+                    </footer>
                 </div>
             </section>
             <section id="brief-cart-checkout">
