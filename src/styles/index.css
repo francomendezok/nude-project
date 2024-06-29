@@ -818,7 +818,7 @@ header {
 #checkout-main {
     display: grid;
     grid-template-columns: 1.3fr 1fr;
-    height: 170vh;
+    height: 150vh;
     overflow-y: scroll;
 }
 
@@ -1021,7 +1021,7 @@ header {
 
 .contact-form label:first-child {
     font-size: 20px;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 .email-me-box {
@@ -1034,7 +1034,7 @@ header {
     margin-top: .5rem;
 }
 
-.email-me-box input {
+.email-me-box input, #text-offers {
     width: 20px;
     margin-right: .5rem;
 }
@@ -1045,6 +1045,105 @@ header {
     flex-direction: column;
     padding-top: 2rem;
     padding-left: 1rem;
+}
+
+.shipping-form label:first-child {
+    font-size: 20px;
+    margin-bottom: 1rem;
+}
+
+#select-country {
+    width: 100%;
+    padding: 10px;
+    margin: 1rem 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #fff;
+    font-size: 16px;
+    color: #333;
+    appearance: none; /* hide default arrow */
+    line-height: 1.5;
+}
+
+#select-country option {
+    padding: 10px;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+#select-country:focus {
+    outline: none;
+    border-color: black;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+#select-country {
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4.1 4.8"><path d="M2 4.8L0 2.8.6 2 2 3.4 3.4 2l.6.7L2 4.8z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px top 50%;
+    background-size: 10px 10px;
+    padding-right: 30px;
+}
+
+#select-country::-ms-expand {
+    display: none;
+}
+
+.names, .zip-and-city {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+#first-name, #last-name, #zip-code, #city {
+    width: 49%;
+}
+
+#address, #apartment {
+    margin-bottom: 1rem;
+}
+
+.text-box {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    color: grey;
+}
+
+.to-shipping {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+    height: 100px;
+}
+
+.return-to-cart {
+    font-size: 15px;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.return-to-cart p span {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+#btn-submit {
+    background-color: #452b1a;
+    color: white;
+    padding: 2rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+#btn-submit:hover {
+    background-color: black;
+    transition: ease-in-out .2s;
 }
 
 #footer-checkout {

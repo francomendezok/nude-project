@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
-import { useLocation, Form } from "react-router-dom"
+import { useLocation, Form, Link } from "react-router-dom"
 import { useState } from "react";
 import { getCart } from "./Cart";
 import ImageComponent from '../collections/ImageComponent';
 import Logo from "../home/Logo";
 import expressCheckout from '../images/express-checkout.png'
+import countries from '../api/countries.json'
 
 
 function ProductsBriefCart ({cart}) {
@@ -27,6 +28,24 @@ function ProductsBriefCart ({cart}) {
             )
         })
     )
+}
+
+function Countries({ countries }) {
+    return (
+        <select name="country" id="select-country" defaultValue="">
+            <option value="Argentina" disabled selected>Argentina</option>
+            {countries.map(country => (
+                <option key={country.code} value={country.code}>
+                    {country.name}
+                </option>
+            ))}
+        </select>
+    );
+}
+
+function handleSubmit (e) {
+    e.preventDefault()
+    alert("You made a purchase ✅😀")
 }
 
 export default function Checkout () {
@@ -66,28 +85,32 @@ export default function Checkout () {
                         </div>
                         <div className="shipping-form">
                             <label htmlFor="shipping">Shipping adress</label>
-                            <select name="country" id="select-country" placeholder="Country/region">
-                                <option value="Argentina"></option>
-                            </select>
-                            <input type="text" name="first-name" id="first-name" placeholder="First name" />
-                            <input type="text" name="last-name" id="last-name" placeholder="Last name" />
+                            <div>
+                                <h2>Country/region</h2>
+                                <Countries countries={countries} />
+                            </div>
+                            <div className="names">
+                                <input type="text" name="first-name" id="first-name" placeholder="First name" />
+                                <input type="text" name="last-name" id="last-name" placeholder="Last name" />
+                            </div>
                             <input type="text" name="address" id="address" placeholder="Address" />
                             <input type="text" name="apartment" id="apartment" placeholder="Apartment, suite, etc (optional)" />
-                            <input type="number" name="zip-code" id="zip-code" placeholder="Postal code" />
-                            <input type="text" name="city" id="city" placeholder="city" />
-                            <select name="province" id="province" placeholder="Province">
-                                <option value="cordoba">Cordoba</option>
-                            </select>
+                            <div className="zip-and-city">
+                                <input type="number" name="zip-code" id="zip-code" placeholder="Postal code" />
+                                <input type="text" name="city" id="city" placeholder="city" />
+                            </div>
                             <input type="tel" name="phone" id="phone" placeholder="Phone" />
-                            <div>
+                            <div className="text-box">
                                 <input type="checkbox" name="text-offers" id="text-offers" />
                                 <label htmlFor="text-offers">Text me with news and offers</label>
                             </div>
                             <div className="to-shipping">
                                 <div className="return-to-cart">
-                                    <p>Return to cart</p>
+                                    <Link to="/">
+                                        <p> <span>{"<"}</span> Return to cart</p>
+                                    </Link>
                                 </div>
-                                <button onClick={(e) => e.preventDefault()} id="btn-submit" type="submit">Continue to shipping</button>
+                                <button onClick={handleSubmit} id="btn-submit" type="submit">Continue to shipping</button>
                             </div>
                         </div>
                     </Form>
