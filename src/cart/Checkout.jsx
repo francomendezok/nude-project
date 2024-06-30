@@ -6,7 +6,7 @@ import ImageComponent from '../collections/ImageComponent';
 import Logo from "../home/Logo";
 import expressCheckout from '../images/express-checkout.png'
 import countries from '../api/countries.json'
-
+import '../styles/checkout.css'
 
 function ProductsBriefCart ({cart}) {
     return (
@@ -33,7 +33,7 @@ function ProductsBriefCart ({cart}) {
 function Countries({ countries }) {
     return (
         <select name="country" id="select-country" defaultValue="">
-            <option value="Argentina" disabled selected>Argentina</option>
+            <option value="Argentina" selected>Argentina</option>
             {countries.map(country => (
                 <option key={country.code} value={country.code}>
                     {country.name}
