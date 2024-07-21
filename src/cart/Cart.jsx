@@ -4,7 +4,8 @@ import ImageComponent from '../collections/ImageComponent';
 import { Link } from "react-router-dom";
 
 function handleCart(setShowCart) {
-    document.documentElement.classList.remove('no-scroll'); // document.documentElement refers to the <html> element
+    alert("El ancho de la pantalla es: " + window.innerWidth + " píxeles.");
+    document.documentElement.classList.remove('no-scroll')
     setShowCart(false)
 }
 
@@ -157,7 +158,7 @@ export default function Cart ({setShowCart, cart, setCart}) {
             <div className="cart-hidden">
                 <div className="cart-info-cross">
                     <h2>CART</h2>
-                    <svg className="cursor-pointer" onClick={() => setShowCart(false)} width="15" height="15" viewBox="0 0 15 14" fill="#452b1a" xmlns="http://www.w3.org/2000/svg">
+                    <svg className="cursor-pointer" onClick={() => handleCart(setShowCart)} width="15" height="15" viewBox="0 0 15 14" fill="#452b1a" xmlns="http://www.w3.org/2000/svg">
     <path d="M1.13135 1L14.0004 13" stroke="#452b1a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
     <path d="M1.13135 13L14.0004 1" stroke="#452b1a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
 </svg>

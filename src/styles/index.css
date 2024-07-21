@@ -819,6 +819,16 @@ header {
 
 /* MEDIA QUERY */
 @media (min-width: 1024px) and (max-width: 1439px) {
+    .clothes-categories-images {
+        position: relative;
+        top: 10rem;
+        left: 5rem;
+        bottom: 10rem;
+        font-size: 1.5rem;
+        color: white;
+        font-weight: bold;
+    }
+    
     #store {
         width: 100%;
     }
@@ -867,15 +877,80 @@ header {
     }
 
     .cart-hidden {
-        left: 80rem;
-        width: 28vw;
+        left: 70%;
+        width: 30vw;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1000px) {
+    .clothes-categories-images {
+        position: relative;
+        top: 10rem;
+        left: 5rem;
+        bottom: 10rem;
+        font-size: 1.5rem;
+        color: white;
+        font-weight: bold;
+    }
+    
+    #store {
+        width: 100%;
+    }
+
+    .city-info-container {
+        position: relative;
+        left: 24rem;
+        bottom: 20rem;
+        z-index: 1;
+        width: 450px;
+        height: 140px;
+        padding: 22px 29px 23px 24px;
+    }
+
+    .logo-container {
+        width: 90%;
+    }
+
+    .packaging-and-payment-big-box {
+        padding: 2rem 0;
+    }
+
+    #footer-root {
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr 2fr;
+        border-top: 1px solid grey;
+        padding: 60px 80px 100px 80px ;
+        position: relative;
+        z-index: 1;
+    }
+
+    .new-in {
+        padding: 0.2rem;
+        position: relative;
+        top: 1rem;
+        background-color: rgb(234, 234, 234);
+        color: rgb(74, 74, 74);
+        top: 2rem;
+        right: 6rem;
+    }
+
+    #trustPilot-container {
+        width: 80%;
+    }
+
+    .cart-hidden {
+        left: 70%;
+        width: 30vw;
     }
 }
 
 
-@media (min-width: 1440px) and (max-width: 1600px) {
+@media (min-width: 1440px) and (max-width: 1500px) {
     #store {
         width: 100%;
+        border: 4px solid red;
     }
 
     #trustPilot-container {
