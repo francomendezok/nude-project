@@ -4,7 +4,6 @@ import ImageComponent from '../collections/ImageComponent';
 import { Link } from "react-router-dom";
 
 function handleCart(setShowCart) {
-    alert("El ancho de la pantalla es: " + window.innerWidth + " píxeles.");
     document.documentElement.classList.remove('no-scroll')
     setShowCart(false)
 }
