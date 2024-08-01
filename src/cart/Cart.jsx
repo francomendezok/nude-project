@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import ImageComponent from '../collections/ImageComponent';
 import { Link } from "react-router-dom";
 
@@ -105,20 +105,23 @@ function CartProducts({ cart, setCart }) {
     );
 }
 
-function ShippingCost ({cart}) {
-        if (cart.reduce((total, item) => total + item.price * item.amount, 0) >= 200) {
-            return (
-                <p>You are eligible for free shipping!</p>
-            )
-        }
-        else {
-            return (
-                <div>
-                    <p>SPAIN: {cart.reduce((total, item) => total + item.price * item.amount, 0) >= 100 ? "You are eligible for free shipping!" : `Spend €${100 - cart.reduce((total, item) => total + item.price * item.amount, 0)} more and get free shipping`} </p>
-                    <p>INTERNATIONAL: {cart.reduce((total, item) => total + item.price * item.amount, 0) >= 200 ? "You are eligible for free shipping!" : `Spend €${200 - cart.reduce((total, item) => total + item.price * item.amount, 0)} more and get free shipping`} </p>
-                </div>
-            )
-        }
+function ShippingCost({ cart }) {
+    const cartTotal = useMemo(() => {
+        return cart.reduce((total, item) => total + item.price * item.amount, 0);
+    }, [cart]);
+
+    if (cartTotal >= 200) {
+        return (
+            <p>You are eligible for free shipping!</p>
+        );
+    } else {
+        return (
+            <div>
+                <p>SPAIN: {cartTotal >= 100 ? "You are eligible for free shipping!" : `Spend €${100 - cartTotal} more and get free shipping`}</p>
+                <p>INTERNATIONAL: {cartTotal >= 200 ? "You are eligible for free shipping!" : `Spend €${200 - cartTotal} more and get free shipping`}</p>
+            </div>
+        );
+    }
 }
 
 function ShippingContainer ({cart}) {

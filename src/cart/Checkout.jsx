@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useLocation, Form, Link } from "react-router-dom"
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { getCart } from "./Cart";
 import ImageComponent from '../collections/ImageComponent';
 import Logo from "../home/Logo";
@@ -52,7 +52,13 @@ export default function Checkout () {
     const location = useLocation()
     const { cart } = location.state || { cart: getCart() };
     const total = cart.reduce((total, item) => total + item.price * item.amount, 0)
+    console.log(total)
     const [scroll, setScroll] = useState(false)
+    const inputRef = useRef(null)
+
+    useEffect(() => {
+        inputRef.current.focus()
+    }, [])
 
     function handleScroll () {
         if (cart.length > 3) {
@@ -77,7 +83,7 @@ export default function Checkout () {
                     <Form method="post" id="form">
                         <div className="contact-form">
                             <label htmlFor="contact">Contact</label>
-                            <input type="email" name="email" id="email" placeholder="Email"/>
+                            <input type="email" ref={inputRef} name="email" id="email" placeholder="Email"/>
                             <div className="email-me-box">
                                 <input type="checkbox" name="" id="" />
                                 <label htmlFor="checkbox-email">Email me with news and offers</label>
